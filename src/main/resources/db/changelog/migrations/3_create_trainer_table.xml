@@ -4,18 +4,12 @@
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-   <changeSet id="2_create_user_table" author="henrotaym">
-        <createTable tableName="users">
+   <changeSet id="3_create_trainer_table" author="henrotaym">
+        <createTable tableName="trainers">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" primaryKeyName="pk_plantes"/>
             </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="password" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="catching_number" type="INT" defaultValueNumeric="5">
                 <constraints nullable="false"/>
             </column>
         </createTable>

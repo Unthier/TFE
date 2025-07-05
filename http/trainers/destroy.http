@@ -1,0 +1,2 @@
+DELETE http://app:8080/api/trainers/3
+Content-Type: application/json

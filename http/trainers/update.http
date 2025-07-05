@@ -1,0 +1,7 @@
+POST http://app:8080/api/trainers/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Thierry du début de jeu"
+}
