@@ -1,0 +1,13 @@
+PUT http://app:8080/api/pokemons/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Pikachu",
+    "attack": 55,
+    "speed": 90,
+    "pv":35,
+    "defense":40,
+    "level":1,
+    "type":"ELECTRIC"
+}

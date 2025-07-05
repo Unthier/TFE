@@ -1,0 +1,8 @@
+POST http://app:8080/api/users
+Content-Type: application/json
+
+{
+    "name": "Thierr",
+    "password": "HelloHello1@",
+    "catchingNumber": 5
+}
