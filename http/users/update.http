@@ -1,9 +1,9 @@
-POST http://app:8080/api/users/1
+PUT http://app:8080/api/users/1
 Content-Type: application/json
 
 {
-    "id": 1,
+    "od":1,
     "name": "Thierry",
     "password": "HelloHello1@",
-    "catchingNumber": 5
+    "mail": "ttot@gmail.com"
 }

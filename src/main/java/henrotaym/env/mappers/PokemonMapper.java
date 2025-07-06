@@ -15,21 +15,17 @@ public class PokemonMapper {
         pokemon.getSpeed(),
         pokemon.getPv(),
         pokemon.getDefense(),
-        pokemon.getLevel(),
         pokemon.getType() /*,
         pokemon.getStatus()*/);
   }
 
   public Pokemon request(PokemonRequest request, Pokemon pokemon) {
     pokemon.setName(request.name());
-    pokemon.setNickname(request.nickname());
     pokemon.setAttack(request.attack());
     pokemon.setDefense(request.defense());
-    pokemon.setLevel(request.level());
     pokemon.setPv(request.pv());
     pokemon.setSpeed(request.speed());
     pokemon.setType(request.type());
-    pokemon.setStatus(request.status());
 
     return pokemon;
   }

@@ -8,6 +8,5 @@ Content-Type: application/json
     "speed": 90,
     "pv":35,
     "defense":40,
-    "level":1,
     "type":"ELECTRIC"
 }

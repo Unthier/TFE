@@ -1,5 +1,6 @@
 package henrotaym.env.entities;
 
+import henrotaym.env.enums.PokemonCatchingStatusName;
 import henrotaym.env.enums.PokemonTypeName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,23 +11,30 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigInteger;
+import java.time.Instant;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "pokemons")
-public class Pokemon {
+@Table(name = "pokemons_catching")
+public class PokemonCatching {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private BigInteger id;
 
+  private BigInteger pokemon_id;
+
   private String name;
+
+  private String nickname;
 
   private Integer attack;
 
@@ -34,7 +42,17 @@ public class Pokemon {
 
   private Integer pv;
 
+  private Integer level;
+
   private Integer defense;
+
+  @CreationTimestamp private Instant catchingOn;
+
+  @CreationTimestamp private List<Instant> trainingOns;
+
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private PokemonCatchingStatusName status;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)

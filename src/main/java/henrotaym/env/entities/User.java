@@ -33,5 +33,9 @@ public class User {
               + " un chiffre et un caractère spécial")
   private String password;
 
-  private Integer captchingNumber;
+  private String mail;
+
+  //   @CreationTimestamp
+  //     private Instant captchingNumber;
+  //   private Integer captchingNumber;
 }

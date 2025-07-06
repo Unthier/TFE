@@ -20,11 +20,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "pokemons")
-public class Pokemon {
+@Table(name = "trainers_pokemon")
+public class TrainerPokemon {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private BigInteger id;
+
+  private BigInteger pokemon_id;
 
   private String name;
 
@@ -33,6 +35,8 @@ public class Pokemon {
   private Integer speed;
 
   private Integer pv;
+
+  private Integer level;
 
   private Integer defense;
 

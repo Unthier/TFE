@@ -14,7 +14,8 @@ public class UserResource implements HasIncludables {
 
   private final BigInteger id;
   private final String name;
-  private final Integer catching_number;
+  // private final Integer catching_number;
+  private final String mail;
 
   @Override
   public Set<String> includables() {

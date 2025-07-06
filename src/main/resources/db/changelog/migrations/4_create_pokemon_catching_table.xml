@@ -4,27 +4,39 @@
     xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
-   <changeSet id="1_create_pokemon_table" author="henrotaym">
-        <createTable tableName="pokemons">
+   <changeSet id="4_create_pokemon_catching_table" author="henrotaym">
+        <createTable tableName="pokemons_catching">
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" primaryKeyName="pk_pokemons"/>
+                <constraints primaryKey="true" primaryKeyName="pk_pokemons_catching"/>
+            </column>
+            <column name="pokemon_id" type="BIGINT">
+                <constraints nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="pv" type="INT">
-                <constraints nullable="false"/>
+            <column name="nickname" type="VARCHAR(255)">
+                <constraints nullable="true"/>
             </column>
             <column name="attack" type="INT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="defense" type="INT">
                 <constraints nullable="false"/>
             </column>
             <column name="speed" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="pv" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="level" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="defense" type="INT">
+                <constraints nullable="false"/>
+            </column>
             <column name="type" type="ENUM('NORMAL','FIRE','WATER','GRASS','ELECTRIC','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DARK','DRAGON','STEEL','FAIRY')">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="ENUM('EGG','NEUTRE','FIGHT')">
                 <constraints nullable="false"/>
             </column>
         </createTable>

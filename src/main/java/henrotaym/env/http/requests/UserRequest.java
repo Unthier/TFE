@@ -6,6 +6,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record UserRequest(
     @NotBlank String name,
-    String nickname,
     @Valid String password,
-    @NotNull Integer catchingNumber) {}
+    // @NotNull Integer catchingNumber
+    @NotNull String mail) {}

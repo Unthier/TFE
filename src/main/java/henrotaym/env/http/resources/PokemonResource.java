@@ -20,7 +20,7 @@ public class PokemonResource implements HasIncludables {
   private final Integer speed;
   private final Integer pv;
   private final Integer defense;
-  private final Integer level;
+  // private final Integer level;
   private final PokemonTypeName type;
 
   // private final PokemonStatusName status;
