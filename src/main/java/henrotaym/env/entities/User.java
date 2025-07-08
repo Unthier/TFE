@@ -1,12 +1,22 @@
 package henrotaym.env.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import henrotaym.env.enums.UserRoleName;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Pattern;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +45,20 @@ public class User {
 
   private String mail;
 
-  //   @CreationTimestamp
-  //     private Instant captchingNumber;
-  //   private Integer captchingNumber;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private UserRoleName role;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  @JsonManagedReference
+  private List<PokemonCatching> pokemonsCatching = new ArrayList<PokemonCatching>();
+
+  //   public void setPokemonsCatching(List<PokemonCatching> pokemonCatchings) {
+  //     this.pokemonsCatching.clear();
+  //     this.pokemonsCatching.addAll(pokemonCatchings);
+  //   }
+
+  public Set<String> getIncludables() {
+    return Set.of("pokemonsCatching");
+  }
 }

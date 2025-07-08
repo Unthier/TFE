@@ -3,5 +3,6 @@ Content-Type: application/json
 
 {
     "id": 1,
-    "name": "Thierry du début de jeu"
+    "name": "Thierry du début de jeu",
+    "pokemonsTrainer": null
 }

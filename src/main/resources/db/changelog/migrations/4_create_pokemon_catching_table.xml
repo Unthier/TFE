@@ -39,6 +39,9 @@
             <column name="status" type="ENUM('EGG','NEUTRE','FIGHT')">
                 <constraints nullable="false"/>
             </column>
+            <column name="catching_on" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
    </changeSet>
 </databaseChangeLog>

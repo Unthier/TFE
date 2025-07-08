@@ -7,5 +7,6 @@ Content-Type: application/json
     "speed": 90,
     "pv":35,
     "defense":40,
+    "captureRate" : 40,
     "type":"ELECTRIC"
 }

@@ -24,6 +24,9 @@
             <column name="speed" type="INT">
                 <constraints nullable="false"/>
             </column>
+            <column name="capture_rate" type="INT">
+                <constraints nullable="false"/>
+            </column>
             <column name="type" type="ENUM('NORMAL','FIRE','WATER','GRASS','ELECTRIC','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DARK','DRAGON','STEEL','FAIRY')">
                 <constraints nullable="false"/>
             </column>

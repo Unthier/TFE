@@ -1,2 +1,2 @@
-DELETE http://app:8080/api/trainers/3
+DELETE http://app:8080/api/trainers/1
 Content-Type: application/json

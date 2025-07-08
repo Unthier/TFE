@@ -11,4 +11,5 @@ public record PokemonRequest(
     @NotNull Integer speed,
     @NotNull Integer pv,
     @NotNull Integer defense,
+    @NotNull Integer captureRate,
     @NotNull PokemonTypeName type) {}

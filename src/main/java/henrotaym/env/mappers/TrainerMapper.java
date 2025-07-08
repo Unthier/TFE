@@ -2,6 +2,7 @@ package henrotaym.env.mappers;
 
 import henrotaym.env.entities.Trainer;
 import henrotaym.env.http.requests.TrainerRequest;
+import henrotaym.env.http.requests.relationships.TrainerRelationshipRequest;
 import henrotaym.env.http.resources.TrainerResource;
 import org.springframework.stereotype.Component;
 
@@ -15,5 +16,9 @@ public class TrainerMapper {
     trainer.setName(request.name());
 
     return trainer;
+  }
+
+  public TrainerRelationshipRequest relationshipRequest(Trainer trainer) {
+    return new TrainerRelationshipRequest(trainer.getId());
   }
 }

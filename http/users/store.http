@@ -4,5 +4,7 @@ Content-Type: application/json
 {
     "name": "Thierr",
     "password": "HelloHello1@",
-    "mail": "ttot@gmail.com"
+    "role": "USER",
+    "mail": "ttot@gmail.com",
+    "pokemonsCatching": null
 }

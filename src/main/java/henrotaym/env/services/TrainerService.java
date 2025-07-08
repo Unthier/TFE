@@ -1,9 +1,11 @@
 package henrotaym.env.services;
 
+import henrotaym.env.entities.PokemonTrainer;
 import henrotaym.env.entities.Trainer;
 import henrotaym.env.http.requests.TrainerRequest;
 import henrotaym.env.http.resources.TrainerResource;
 import henrotaym.env.mappers.ResourceMapper;
+import henrotaym.env.repositories.PokemonTrainerRepository;
 import henrotaym.env.repositories.TrainerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.math.BigInteger;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class TrainerService {
   private TrainerRepository trainerRepository;
   private ResourceMapper resourceMapper;
+  private PokemonTrainerRepository pokemonTrainerRepository;
 
   public TrainerResource store(TrainerRequest request) {
     Trainer trainer = new Trainer();
@@ -54,7 +57,15 @@ public class TrainerService {
         .orElseThrow(() -> new EntityNotFoundException("Trainer not found."));
   }
 
+  private List<PokemonTrainer> getPokemonTrainers(TrainerRequest request) {
+    if (request.pokemonsTrainer() == null) return null;
+    return request.pokemonsTrainer().stream()
+        .map(pokemonCatching -> this.pokemonTrainerRepository.findById(pokemonCatching.id()).get())
+        .toList();
+  }
+
   private TrainerResource storeOrUpdate(TrainerRequest request, Trainer trainer) {
+    trainer.setPokemons(this.getPokemonTrainers(request));
     trainer = this.resourceMapper.getTrainerMapper().request(request, trainer);
     trainer = this.trainerRepository.save(trainer);
 

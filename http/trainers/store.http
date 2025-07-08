@@ -2,5 +2,6 @@ POST http://app:8080/api/trainers
 Content-Type: application/json
 
 {
-    "name": "Gamin du début"
+    "name": "Gamin du début",
+    "pokemonsTrainer": null
 }

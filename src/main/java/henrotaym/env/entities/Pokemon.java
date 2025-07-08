@@ -36,6 +36,8 @@ public class Pokemon {
 
   private Integer defense;
 
+  private Integer captureRate;
+
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private PokemonTypeName type;

@@ -18,6 +18,9 @@
             <column name="mail" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="role" type="ENUM('ADMIN','USER','GUEST')">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
    </changeSet>
 </databaseChangeLog>

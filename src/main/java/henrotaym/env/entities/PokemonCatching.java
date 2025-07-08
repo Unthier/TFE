@@ -1,14 +1,19 @@
 package henrotaym.env.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import henrotaym.env.enums.PokemonCatchingStatusName;
 import henrotaym.env.enums.PokemonTypeName;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigInteger;
 import java.time.Instant;
@@ -48,7 +53,11 @@ public class PokemonCatching {
 
   @CreationTimestamp private Instant catchingOn;
 
-  @CreationTimestamp private List<Instant> trainingOns;
+  @ElementCollection
+  @CollectionTable(
+      name = "pokemon_training_ons",
+      joinColumns = @JoinColumn(name = "pokemon_catching_id"))
+  private List<Instant> trainingOns;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
@@ -57,4 +66,9 @@ public class PokemonCatching {
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private PokemonTypeName type;
+
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "user_id", nullable = false)
+  @JsonBackReference() // Prevents infinite recursion during serialization
+  private User user;
 }

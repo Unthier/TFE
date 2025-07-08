@@ -1,0 +1,27 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+   <changeSet id="8_create_pokemon_training_on_table" author="henrotaym">
+    <createTable tableName="pokemon_training_ons">
+        <column name="pokemon_catching_id" type="BIGINT">
+            <constraints nullable="false"/>
+        </column>
+        <column name="training_on" type="TIMESTAMP">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+
+    <addForeignKeyConstraint 
+        constraintName="fk_training_ons_catching"
+        baseTableName="pokemon_training_ons"
+        baseColumnNames="pokemon_catching_id"
+        referencedTableName="pokemons_catching"
+        referencedColumnNames="id"/>
+</changeSet>
+</databaseChangeLog>
+
+
+

@@ -2,8 +2,10 @@ PUT http://app:8080/api/users/1
 Content-Type: application/json
 
 {
-    "od":1,
+    "id":1,
     "name": "Thierry",
     "password": "HelloHello1@",
-    "mail": "ttot@gmail.com"
+    "role": "ADMIN",
+    "mail": "ttot@gmail.com",
+    "pokemonsCatching": null
 }

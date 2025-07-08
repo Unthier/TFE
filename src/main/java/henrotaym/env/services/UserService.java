@@ -1,9 +1,11 @@
 package henrotaym.env.services;
 
+import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.entities.User;
 import henrotaym.env.http.requests.UserRequest;
 import henrotaym.env.http.resources.UserResource;
 import henrotaym.env.mappers.ResourceMapper;
+import henrotaym.env.repositories.PokemonCatchingRepository;
 import henrotaym.env.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.math.BigInteger;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
   private UserRepository userRepository;
   private ResourceMapper resourceMapper;
+  private PokemonCatchingRepository pokemonCatchingRepository;
 
   public UserResource store(UserRequest request) {
     User user = new User();
@@ -54,7 +57,15 @@ public class UserService {
         .orElseThrow(() -> new EntityNotFoundException("User not found."));
   }
 
+  private List<PokemonCatching> getPokemonCatching(UserRequest request) {
+    if (request.pokemonsCatching() == null) return null;
+    return request.pokemonsCatching().stream()
+        .map(pokemonCatching -> this.pokemonCatchingRepository.findById(pokemonCatching.id()).get())
+        .toList();
+  }
+
   private UserResource storeOrUpdate(UserRequest request, User user) {
+    user.setPokemonsCatching(this.getPokemonCatching(request));
     user = this.resourceMapper.getUserMapper().request(request, user);
     user = this.userRepository.save(user);
 
