@@ -9,5 +9,7 @@ Content-Type: application/json
     "pv":35,
     "defense":40,
     "captureRate" : 40,
-    "type":"ELECTRIC"
+    "type":"ELECTRIC",
+    "nextEvolutionLevel": 30,
+    "nameOfNextEvolution": "Raichu"
 }

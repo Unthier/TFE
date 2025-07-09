@@ -8,5 +8,1520 @@ Content-Type: application/json
     "pv":35,
     "defense":40,
     "captureRate" : 40,
-    "type":"ELECTRIC"
+    "type":"ELECTRIC",
+    "nextEvolutionLevel": 30,
+    "nameOfNextEvolution": "Raichu"
 }
+
+# [
+#     {
+#         "name": "Bulbasaur",
+#         "type": "GRASS",
+#         "attack": 49,
+#         "defense": 49,
+#         "speed": 45,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Ivysaur"
+#     },
+#     {
+#         "name": "Ivysaur",
+#         "type": "GRASS",
+#         "attack": 62,
+#         "defense": 63,
+#         "speed": 60,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Venusaur"
+#     },
+#     {
+#         "name": "Venusaur",
+#         "type": "GRASS",
+#         "attack": 82,
+#         "defense": 83,
+#         "speed": 80,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Charmander",
+#         "type": "FIRE",
+#         "attack": 52,
+#         "defense": 43,
+#         "speed": 65,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Charmeleon"
+#     },
+#     {
+#         "name": "Charmeleon",
+#         "type": "FIRE",
+#         "attack": 64,
+#         "defense": 58,
+#         "speed": 80,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Charizard"
+#     },
+#     {
+#         "name": "Charizard",
+#         "type": "FIRE",
+#         "attack": 84,
+#         "defense": 78,
+#         "speed": 100,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Squirtle",
+#         "type": "WATER",
+#         "attack": 48,
+#         "defense": 65,
+#         "speed": 43,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Wartortle"
+#     },
+#     {
+#         "name": "Wartortle",
+#         "type": "WATER",
+#         "attack": 63,
+#         "defense": 80,
+#         "speed": 58,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Blastoise"
+#     },
+#     {
+#         "name": "Blastoise",
+#         "type": "WATER",
+#         "attack": 83,
+#         "defense": 100,
+#         "speed": 78,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Caterpie",
+#         "type": "BUG",
+#         "attack": 30,
+#         "defense": 35,
+#         "speed": 45,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 7,
+#         "nameOfNextEvolution": "Metapod"
+#     },
+#     {
+#         "name": "Metapod",
+#         "type": "BUG",
+#         "attack": 20,
+#         "defense": 55,
+#         "speed": 30,
+#         "catchingRate": 120,
+#         "nextEvolutionLevel": 10,
+#         "nameOfNextEvolution": "Butterfree"
+#     },
+#     {
+#         "name": "Butterfree",
+#         "type": "BUG",
+#         "attack": 45,
+#         "defense": 50,
+#         "speed": 70,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Weedle",
+#         "type": "BUG",
+#         "attack": 35,
+#         "defense": 30,
+#         "speed": 50,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 7,
+#         "nameOfNextEvolution": "Kakuna"
+#     },
+#     {
+#         "name": "Kakuna",
+#         "type": "BUG",
+#         "attack": 25,
+#         "defense": 50,
+#         "speed": 35,
+#         "catchingRate": 120,
+#         "nextEvolutionLevel": 10,
+#         "nameOfNextEvolution": "Beedrill"
+#     },
+#     {
+#         "name": "Beedrill",
+#         "type": "BUG",
+#         "attack": 90,
+#         "defense": 40,
+#         "speed": 75,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pidgey",
+#         "type": "FLYING",
+#         "attack": 45,
+#         "defense": 40,
+#         "speed": 56,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 18,
+#         "nameOfNextEvolution": "Pidgeotto"
+#     },
+#     {
+#         "name": "Pidgeotto",
+#         "type": "FLYING",
+#         "attack": 60,
+#         "defense": 55,
+#         "speed": 71,
+#         "catchingRate": 120,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pidgeot"
+#     },
+#     {
+#         "name": "Pidgeot",
+#         "type": "FLYING",
+#         "attack": 80,
+#         "defense": 75,
+#         "speed": 101,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Rattata",
+#         "type": "NORMAL",
+#         "attack": 56,
+#         "defense": 35,
+#         "speed": 72,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 20,
+#         "nameOfNextEvolution": "Raticate"
+#     },
+#     {
+#         "name": "Raticate",
+#         "type": "NORMAL",
+#         "attack": 81,
+#         "defense": 60,
+#         "speed": 97,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Spearow",
+#         "type": "FLYING",
+#         "attack": 60,
+#         "defense": 30,
+#         "speed": 70,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 20,
+#         "nameOfNextEvolution": "Fearow"
+#     },
+#     {
+#         "name": "Fearow",
+#         "type": "FLYING",
+#         "attack": 90,
+#         "defense": 65,
+#         "speed": 100,
+#         "catchingRate": 90,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Ekans",
+#         "type": "POISON",
+#         "attack": 60,
+#         "defense": 44,
+#         "speed": 55,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 22,
+#         "nameOfNextEvolution": "Arbok"
+#     },
+#     {
+#         "name": "Arbok",
+#         "type": "POISON",
+#         "attack": 95,
+#         "defense": 69,
+#         "speed": 80,
+#         "catchingRate": 90,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pikachu",
+#         "type": "ELECTRIC",
+#         "attack": 55,
+#         "defense": 40,
+#         "speed": 90,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 30,
+#         "nameOfNextEvolution": "Raichu"
+#     },
+#     {
+#         "name": "Raichu",
+#         "type": "ELECTRIC",
+#         "attack": 90,
+#         "defense": 55,
+#         "speed": 110,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Snorlax",
+#         "type": "NORMAL",
+#         "attack": 110,
+#         "defense": 65,
+#         "speed": 30,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Gengar",
+#         "type": "GHOST",
+#         "attack": 65,
+#         "defense": 60,
+#         "speed": 110,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Machamp",
+#         "type": "FIGHTING",
+#         "attack": 130,
+#         "defense": 80,
+#         "speed": 55,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Dragonite",
+#         "type": "DRAGON",
+#         "attack": 134,
+#         "defense": 95,
+#         "speed": 80,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Articuno",
+#         "type": "ICE",
+#         "attack": 85,
+#         "defense": 100,
+#         "speed": 85,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon32",
+#         "type": "BUG",
+#         "attack": 73,
+#         "defense": 130,
+#         "speed": 114,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon33",
+#         "type": "GROUND",
+#         "attack": 52,
+#         "defense": 130,
+#         "speed": 75,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon33X"
+#     },
+#     {
+#         "name": "Pokemon34",
+#         "type": "DARK",
+#         "attack": 122,
+#         "defense": 68,
+#         "speed": 100,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon34X"
+#     },
+#     {
+#         "name": "Pokemon35",
+#         "type": "ROCK",
+#         "attack": 68,
+#         "defense": 116,
+#         "speed": 61,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon35X"
+#     },
+#     {
+#         "name": "Pokemon36",
+#         "type": "ELECTRIC",
+#         "attack": 34,
+#         "defense": 92,
+#         "speed": 59,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon36X"
+#     },
+#     {
+#         "name": "Pokemon37",
+#         "type": "GHOST",
+#         "attack": 56,
+#         "defense": 96,
+#         "speed": 60,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon37X"
+#     },
+#     {
+#         "name": "Pokemon38",
+#         "type": "ICE",
+#         "attack": 74,
+#         "defense": 122,
+#         "speed": 85,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon38X"
+#     },
+#     {
+#         "name": "Pokemon39",
+#         "type": "FLYING",
+#         "attack": 99,
+#         "defense": 111,
+#         "speed": 69,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon39X"
+#     },
+#     {
+#         "name": "Pokemon40",
+#         "type": "ROCK",
+#         "attack": 93,
+#         "defense": 37,
+#         "speed": 68,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon41",
+#         "type": "WATER",
+#         "attack": 32,
+#         "defense": 91,
+#         "speed": 95,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon42",
+#         "type": "FIRE",
+#         "attack": 47,
+#         "defense": 100,
+#         "speed": 78,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon43",
+#         "type": "GHOST",
+#         "attack": 94,
+#         "defense": 103,
+#         "speed": 109,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon44",
+#         "type": "STEEL",
+#         "attack": 38,
+#         "defense": 59,
+#         "speed": 55,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon44X"
+#     },
+#     {
+#         "name": "Pokemon45",
+#         "type": "DARK",
+#         "attack": 68,
+#         "defense": 127,
+#         "speed": 95,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon45X"
+#     },
+#     {
+#         "name": "Pokemon46",
+#         "type": "GROUND",
+#         "attack": 50,
+#         "defense": 35,
+#         "speed": 106,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon46X"
+#     },
+#     {
+#         "name": "Pokemon47",
+#         "type": "BUG",
+#         "attack": 77,
+#         "defense": 54,
+#         "speed": 102,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon47X"
+#     },
+#     {
+#         "name": "Pokemon48",
+#         "type": "GRASS",
+#         "attack": 124,
+#         "defense": 129,
+#         "speed": 30,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon48X"
+#     },
+#     {
+#         "name": "Pokemon49",
+#         "type": "ELECTRIC",
+#         "attack": 91,
+#         "defense": 31,
+#         "speed": 64,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon49X"
+#     },
+#     {
+#         "name": "Pokemon50",
+#         "type": "ICE",
+#         "attack": 36,
+#         "defense": 53,
+#         "speed": 129,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon50X"
+#     },
+#     {
+#         "name": "Pokemon51",
+#         "type": "NORMAL",
+#         "attack": 60,
+#         "defense": 128,
+#         "speed": 65,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon52",
+#         "type": "DRAGON",
+#         "attack": 66,
+#         "defense": 100,
+#         "speed": 89,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon53",
+#         "type": "ELECTRIC",
+#         "attack": 58,
+#         "defense": 108,
+#         "speed": 36,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon54",
+#         "type": "GHOST",
+#         "attack": 67,
+#         "defense": 125,
+#         "speed": 128,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon55",
+#         "type": "STEEL",
+#         "attack": 38,
+#         "defense": 43,
+#         "speed": 38,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon55X"
+#     },
+#     {
+#         "name": "Pokemon56",
+#         "type": "FIRE",
+#         "attack": 128,
+#         "defense": 60,
+#         "speed": 71,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon57",
+#         "type": "ROCK",
+#         "attack": 53,
+#         "defense": 34,
+#         "speed": 80,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon57X"
+#     },
+#     {
+#         "name": "Pokemon58",
+#         "type": "DRAGON",
+#         "attack": 49,
+#         "defense": 102,
+#         "speed": 87,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon58X"
+#     },
+#     {
+#         "name": "Pokemon59",
+#         "type": "BUG",
+#         "attack": 53,
+#         "defense": 56,
+#         "speed": 84,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon60",
+#         "type": "DRAGON",
+#         "attack": 52,
+#         "defense": 52,
+#         "speed": 123,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon61",
+#         "type": "FIGHTING",
+#         "attack": 57,
+#         "defense": 55,
+#         "speed": 99,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon62",
+#         "type": "ICE",
+#         "attack": 105,
+#         "defense": 71,
+#         "speed": 77,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon62X"
+#     },
+#     {
+#         "name": "Pokemon63",
+#         "type": "ROCK",
+#         "attack": 94,
+#         "defense": 81,
+#         "speed": 88,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon64",
+#         "type": "DRAGON",
+#         "attack": 41,
+#         "defense": 108,
+#         "speed": 67,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon65",
+#         "type": "FIRE",
+#         "attack": 51,
+#         "defense": 63,
+#         "speed": 61,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon66",
+#         "type": "GROUND",
+#         "attack": 57,
+#         "defense": 59,
+#         "speed": 61,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon66X"
+#     },
+#     {
+#         "name": "Pokemon67",
+#         "type": "GHOST",
+#         "attack": 105,
+#         "defense": 56,
+#         "speed": 40,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon67X"
+#     },
+#     {
+#         "name": "Pokemon68",
+#         "type": "NORMAL",
+#         "attack": 115,
+#         "defense": 64,
+#         "speed": 49,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon69",
+#         "type": "DRAGON",
+#         "attack": 90,
+#         "defense": 81,
+#         "speed": 75,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon70",
+#         "type": "ELECTRIC",
+#         "attack": 86,
+#         "defense": 119,
+#         "speed": 95,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon70X"
+#     },
+#     {
+#         "name": "Pokemon71",
+#         "type": "PSYCHIC",
+#         "attack": 102,
+#         "defense": 89,
+#         "speed": 108,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon72",
+#         "type": "GHOST",
+#         "attack": 113,
+#         "defense": 66,
+#         "speed": 58,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon72X"
+#     },
+#     {
+#         "name": "Pokemon73",
+#         "type": "DARK",
+#         "attack": 93,
+#         "defense": 57,
+#         "speed": 67,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon73X"
+#     },
+#     {
+#         "name": "Pokemon74",
+#         "type": "WATER",
+#         "attack": 121,
+#         "defense": 47,
+#         "speed": 63,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon75",
+#         "type": "ICE",
+#         "attack": 101,
+#         "defense": 95,
+#         "speed": 30,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon75X"
+#     },
+#     {
+#         "name": "Pokemon76",
+#         "type": "DARK",
+#         "attack": 104,
+#         "defense": 126,
+#         "speed": 107,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon77",
+#         "type": "POISON",
+#         "attack": 78,
+#         "defense": 103,
+#         "speed": 75,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon78",
+#         "type": "GROUND",
+#         "attack": 97,
+#         "defense": 110,
+#         "speed": 53,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon79",
+#         "type": "FIRE",
+#         "attack": 68,
+#         "defense": 115,
+#         "speed": 38,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon79X"
+#     },
+#     {
+#         "name": "Pokemon80",
+#         "type": "GROUND",
+#         "attack": 130,
+#         "defense": 116,
+#         "speed": 81,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon80X"
+#     },
+#     {
+#         "name": "Pokemon81",
+#         "type": "POISON",
+#         "attack": 107,
+#         "defense": 121,
+#         "speed": 65,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon82",
+#         "type": "GROUND",
+#         "attack": 127,
+#         "defense": 54,
+#         "speed": 33,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon82X"
+#     },
+#     {
+#         "name": "Pokemon83",
+#         "type": "PSYCHIC",
+#         "attack": 83,
+#         "defense": 68,
+#         "speed": 125,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon83X"
+#     },
+#     {
+#         "name": "Pokemon84",
+#         "type": "PSYCHIC",
+#         "attack": 59,
+#         "defense": 120,
+#         "speed": 83,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon84X"
+#     },
+#     {
+#         "name": "Pokemon85",
+#         "type": "BUG",
+#         "attack": 122,
+#         "defense": 92,
+#         "speed": 65,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon86",
+#         "type": "GHOST",
+#         "attack": 74,
+#         "defense": 89,
+#         "speed": 119,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon86X"
+#     },
+#     {
+#         "name": "Pokemon87",
+#         "type": "ICE",
+#         "attack": 54,
+#         "defense": 35,
+#         "speed": 30,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon87X"
+#     },
+#     {
+#         "name": "Pokemon88",
+#         "type": "NORMAL",
+#         "attack": 57,
+#         "defense": 57,
+#         "speed": 102,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon88X"
+#     },
+#     {
+#         "name": "Pokemon89",
+#         "type": "POISON",
+#         "attack": 75,
+#         "defense": 110,
+#         "speed": 97,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon90",
+#         "type": "ICE",
+#         "attack": 71,
+#         "defense": 82,
+#         "speed": 121,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon90X"
+#     },
+#     {
+#         "name": "Pokemon91",
+#         "type": "POISON",
+#         "attack": 106,
+#         "defense": 90,
+#         "speed": 80,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon92",
+#         "type": "ROCK",
+#         "attack": 36,
+#         "defense": 94,
+#         "speed": 38,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon92X"
+#     },
+#     {
+#         "name": "Pokemon93",
+#         "type": "GHOST",
+#         "attack": 107,
+#         "defense": 125,
+#         "speed": 56,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon93X"
+#     },
+#     {
+#         "name": "Pokemon94",
+#         "type": "PSYCHIC",
+#         "attack": 52,
+#         "defense": 37,
+#         "speed": 87,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon95",
+#         "type": "ROCK",
+#         "attack": 56,
+#         "defense": 93,
+#         "speed": 74,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon96",
+#         "type": "ICE",
+#         "attack": 107,
+#         "defense": 89,
+#         "speed": 79,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon96X"
+#     },
+#     {
+#         "name": "Pokemon97",
+#         "type": "DARK",
+#         "attack": 58,
+#         "defense": 122,
+#         "speed": 118,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon98",
+#         "type": "WATER",
+#         "attack": 35,
+#         "defense": 45,
+#         "speed": 51,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon98X"
+#     },
+#     {
+#         "name": "Pokemon99",
+#         "type": "WATER",
+#         "attack": 63,
+#         "defense": 105,
+#         "speed": 50,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon99X"
+#     },
+#     {
+#         "name": "Pokemon100",
+#         "type": "ELECTRIC",
+#         "attack": 52,
+#         "defense": 55,
+#         "speed": 84,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon101",
+#         "type": "GHOST",
+#         "attack": 78,
+#         "defense": 126,
+#         "speed": 93,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon102",
+#         "type": "FIGHTING",
+#         "attack": 48,
+#         "defense": 70,
+#         "speed": 104,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon103",
+#         "type": "POISON",
+#         "attack": 40,
+#         "defense": 38,
+#         "speed": 67,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon104",
+#         "type": "ICE",
+#         "attack": 67,
+#         "defense": 49,
+#         "speed": 88,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon104X"
+#     },
+#     {
+#         "name": "Pokemon105",
+#         "type": "GRASS",
+#         "attack": 110,
+#         "defense": 39,
+#         "speed": 105,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon105X"
+#     },
+#     {
+#         "name": "Pokemon106",
+#         "type": "GHOST",
+#         "attack": 103,
+#         "defense": 130,
+#         "speed": 70,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon107",
+#         "type": "ELECTRIC",
+#         "attack": 124,
+#         "defense": 34,
+#         "speed": 41,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon108",
+#         "type": "PSYCHIC",
+#         "attack": 68,
+#         "defense": 88,
+#         "speed": 86,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon109",
+#         "type": "PSYCHIC",
+#         "attack": 99,
+#         "defense": 55,
+#         "speed": 123,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon109X"
+#     },
+#     {
+#         "name": "Pokemon110",
+#         "type": "FIGHTING",
+#         "attack": 113,
+#         "defense": 33,
+#         "speed": 95,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon111",
+#         "type": "GHOST",
+#         "attack": 73,
+#         "defense": 87,
+#         "speed": 55,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon111X"
+#     },
+#     {
+#         "name": "Pokemon112",
+#         "type": "GRASS",
+#         "attack": 61,
+#         "defense": 38,
+#         "speed": 46,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon113",
+#         "type": "PSYCHIC",
+#         "attack": 126,
+#         "defense": 87,
+#         "speed": 114,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon113X"
+#     },
+#     {
+#         "name": "Pokemon114",
+#         "type": "ICE",
+#         "attack": 46,
+#         "defense": 116,
+#         "speed": 61,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon114X"
+#     },
+#     {
+#         "name": "Pokemon115",
+#         "type": "DARK",
+#         "attack": 56,
+#         "defense": 76,
+#         "speed": 59,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon115X"
+#     },
+#     {
+#         "name": "Pokemon116",
+#         "type": "FIGHTING",
+#         "attack": 124,
+#         "defense": 106,
+#         "speed": 32,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon117",
+#         "type": "DRAGON",
+#         "attack": 67,
+#         "defense": 51,
+#         "speed": 105,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon118",
+#         "type": "GRASS",
+#         "attack": 127,
+#         "defense": 130,
+#         "speed": 100,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon118X"
+#     },
+#     {
+#         "name": "Pokemon119",
+#         "type": "PSYCHIC",
+#         "attack": 62,
+#         "defense": 99,
+#         "speed": 32,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon120",
+#         "type": "ELECTRIC",
+#         "attack": 79,
+#         "defense": 76,
+#         "speed": 91,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon120X"
+#     },
+#     {
+#         "name": "Pokemon121",
+#         "type": "FIRE",
+#         "attack": 74,
+#         "defense": 84,
+#         "speed": 39,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon122",
+#         "type": "ROCK",
+#         "attack": 70,
+#         "defense": 74,
+#         "speed": 32,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon122X"
+#     },
+#     {
+#         "name": "Pokemon123",
+#         "type": "GRASS",
+#         "attack": 120,
+#         "defense": 129,
+#         "speed": 95,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon123X"
+#     },
+#     {
+#         "name": "Pokemon124",
+#         "type": "FLYING",
+#         "attack": 95,
+#         "defense": 85,
+#         "speed": 40,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon125",
+#         "type": "FIGHTING",
+#         "attack": 58,
+#         "defense": 120,
+#         "speed": 41,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon126",
+#         "type": "GROUND",
+#         "attack": 64,
+#         "defense": 40,
+#         "speed": 38,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon127",
+#         "type": "ICE",
+#         "attack": 53,
+#         "defense": 126,
+#         "speed": 82,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon127X"
+#     },
+#     {
+#         "name": "Pokemon128",
+#         "type": "STEEL",
+#         "attack": 54,
+#         "defense": 108,
+#         "speed": 79,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon128X"
+#     },
+#     {
+#         "name": "Pokemon129",
+#         "type": "STEEL",
+#         "attack": 63,
+#         "defense": 124,
+#         "speed": 51,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon129X"
+#     },
+#     {
+#         "name": "Pokemon130",
+#         "type": "STEEL",
+#         "attack": 50,
+#         "defense": 74,
+#         "speed": 51,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon130X"
+#     },
+#     {
+#         "name": "Pokemon131",
+#         "type": "POISON",
+#         "attack": 122,
+#         "defense": 43,
+#         "speed": 54,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon131X"
+#     },
+#     {
+#         "name": "Pokemon132",
+#         "type": "GRASS",
+#         "attack": 88,
+#         "defense": 37,
+#         "speed": 75,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 40,
+#         "nameOfNextEvolution": "Pokemon132X"
+#     },
+#     {
+#         "name": "Pokemon133",
+#         "type": "ICE",
+#         "attack": 120,
+#         "defense": 111,
+#         "speed": 88,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon133X"
+#     },
+#     {
+#         "name": "Pokemon134",
+#         "type": "GROUND",
+#         "attack": 73,
+#         "defense": 60,
+#         "speed": 113,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon134X"
+#     },
+#     {
+#         "name": "Pokemon135",
+#         "type": "BUG",
+#         "attack": 91,
+#         "defense": 41,
+#         "speed": 63,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon136",
+#         "type": "DRAGON",
+#         "attack": 56,
+#         "defense": 63,
+#         "speed": 88,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon137",
+#         "type": "DRAGON",
+#         "attack": 42,
+#         "defense": 84,
+#         "speed": 128,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon138",
+#         "type": "FIRE",
+#         "attack": 65,
+#         "defense": 89,
+#         "speed": 30,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon138X"
+#     },
+#     {
+#         "name": "Pokemon139",
+#         "type": "FIGHTING",
+#         "attack": 88,
+#         "defense": 115,
+#         "speed": 38,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon140",
+#         "type": "GHOST",
+#         "attack": 119,
+#         "defense": 61,
+#         "speed": 127,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon140X"
+#     },
+#     {
+#         "name": "Pokemon141",
+#         "type": "GRASS",
+#         "attack": 116,
+#         "defense": 39,
+#         "speed": 90,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon142",
+#         "type": "WATER",
+#         "attack": 109,
+#         "defense": 61,
+#         "speed": 73,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon142X"
+#     },
+#     {
+#         "name": "Pokemon143",
+#         "type": "ICE",
+#         "attack": 115,
+#         "defense": 111,
+#         "speed": 82,
+#         "catchingRate": 255,
+#         "nextEvolutionLevel": 36,
+#         "nameOfNextEvolution": "Pokemon143X"
+#     },
+#     {
+#         "name": "Pokemon144",
+#         "type": "ICE",
+#         "attack": 80,
+#         "defense": 37,
+#         "speed": 72,
+#         "catchingRate": 25,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon145",
+#         "type": "ICE",
+#         "attack": 53,
+#         "defense": 48,
+#         "speed": 48,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon146",
+#         "type": "NORMAL",
+#         "attack": 91,
+#         "defense": 53,
+#         "speed": 99,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon147",
+#         "type": "NORMAL",
+#         "attack": 115,
+#         "defense": 67,
+#         "speed": 38,
+#         "catchingRate": 127,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon148",
+#         "type": "WATER",
+#         "attack": 70,
+#         "defense": 80,
+#         "speed": 114,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon149",
+#         "type": "FIRE",
+#         "attack": 101,
+#         "defense": 126,
+#         "speed": 70,
+#         "catchingRate": 3,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     },
+#     {
+#         "name": "Pokemon150",
+#         "type": "NORMAL",
+#         "attack": 30,
+#         "defense": 119,
+#         "speed": 34,
+#         "catchingRate": 75,
+#         "nextEvolutionLevel": 16,
+#         "nameOfNextEvolution": "Pokemon150X"
+#     },
+#     {
+#         "name": "Pokemon151",
+#         "type": "GRASS",
+#         "attack": 44,
+#         "defense": 49,
+#         "speed": 84,
+#         "catchingRate": 190,
+#         "nextEvolutionLevel": 32,
+#         "nameOfNextEvolution": "Pokemon151X"
+#     }
+# ]

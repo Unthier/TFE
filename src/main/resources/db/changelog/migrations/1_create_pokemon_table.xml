@@ -10,7 +10,7 @@
                 <constraints primaryKey="true" primaryKeyName="pk_pokemons"/>
             </column>
             <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="pv" type="INT">
                 <constraints nullable="false"/>
@@ -26,6 +26,12 @@
             </column>
             <column name="capture_rate" type="INT">
                 <constraints nullable="false"/>
+            </column>
+            <column name="next_evolution_level" type="INT">
+                <constraints nullable="true"/>
+            </column>
+            <column name="name_of_next_evolution" type="VARCHAR(255)">
+                <constraints nullable="true"/>
             </column>
             <column name="type" type="ENUM('NORMAL','FIRE','WATER','GRASS','ELECTRIC','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DARK','DRAGON','STEEL','FAIRY')">
                 <constraints nullable="false"/>

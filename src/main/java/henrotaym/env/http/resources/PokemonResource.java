@@ -21,6 +21,8 @@ public class PokemonResource implements HasIncludables {
   private final Integer pv;
   private final Integer defense;
   private final Integer captureRate;
+  private final Integer nextEvolutionLevel;
+  private final String nameOfNextEvolution;
   // private final Integer level;
   private final PokemonTypeName type;
 

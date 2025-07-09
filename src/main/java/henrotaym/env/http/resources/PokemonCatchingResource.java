@@ -3,6 +3,7 @@ package henrotaym.env.http.resources;
 import henrotaym.env.enums.PokemonTypeName;
 import henrotaym.env.serializers.HasIncludables;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Set;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +24,11 @@ public class PokemonCatchingResource implements HasIncludables {
   private final Integer level;
   private final PokemonTypeName type;
   private UserResource user;
+  private List<PokemonTrainingResource> trainings;
 
   @Override
   public Set<String> includables() {
-    return Set.of("user");
+    return Set.of("user", "trainings");
     // TODO Auto-generated method stub
     // throw new UnsupportedOperationException("Unimplemented method 'includables'");
   }

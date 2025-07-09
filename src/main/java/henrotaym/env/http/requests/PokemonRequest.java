@@ -12,4 +12,6 @@ public record PokemonRequest(
     @NotNull Integer pv,
     @NotNull Integer defense,
     @NotNull Integer captureRate,
+    Integer nextEvolutionLevel,
+    String nameOfNextEvolution,
     @NotNull PokemonTypeName type) {}

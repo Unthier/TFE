@@ -16,6 +16,8 @@ public class PokemonMapper {
         pokemon.getPv(),
         pokemon.getDefense(),
         pokemon.getCaptureRate(),
+        pokemon.getNextEvolutionLevel(),
+        pokemon.getNameOfNextEvolution(),
         pokemon.getType() /*,
         pokemon.getStatus()*/);
   }
@@ -28,6 +30,8 @@ public class PokemonMapper {
     pokemon.setSpeed(request.speed());
     pokemon.setType(request.type());
     pokemon.setCaptureRate(request.captureRate());
+    pokemon.setNextEvolutionLevel(request.nextEvolutionLevel());
+    pokemon.setNameOfNextEvolution(request.nameOfNextEvolution());
 
     return pokemon;
   }

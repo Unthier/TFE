@@ -38,6 +38,10 @@ public class Pokemon {
 
   private Integer captureRate;
 
+  private Integer nextEvolutionLevel;
+
+  private String nameOfNextEvolution;
+
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private PokemonTypeName type;
