@@ -12,6 +12,7 @@ public class PokemonCatchingMapper {
   public PokemonCatchingResource resource(PokemonCatching pokemonCatching) {
     return new PokemonCatchingResource(
         pokemonCatching.getId(),
+        pokemonCatching.getPokemonId(),
         pokemonCatching.getName(),
         pokemonCatching.getNickname(),
         pokemonCatching.getAttack(),
@@ -19,7 +20,10 @@ public class PokemonCatchingMapper {
         pokemonCatching.getPv(),
         pokemonCatching.getDefense(),
         pokemonCatching.getLevel(),
-        pokemonCatching.getType());
+        pokemonCatching.getType(),
+        pokemonCatching.getCatchingOn(),
+        pokemonCatching.getStatus(),
+        pokemonCatching.getDamage());
   }
 
   public PokemonCatchingRelationshipRequest relationshipRequest(PokemonCatching pokemonCatching) {

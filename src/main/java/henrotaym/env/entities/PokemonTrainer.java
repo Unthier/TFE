@@ -29,7 +29,7 @@ public class PokemonTrainer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private BigInteger id;
 
-  private BigInteger pokemon_id;
+  private BigInteger pokemonId;
 
   private String name;
 
@@ -42,6 +42,8 @@ public class PokemonTrainer {
   private Integer level;
 
   private Integer defense;
+
+  private Integer damage;
 
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)

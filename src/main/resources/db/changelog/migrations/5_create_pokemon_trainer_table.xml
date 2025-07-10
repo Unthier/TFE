@@ -33,6 +33,9 @@
             <column name="type" type="ENUM('NORMAL','FIRE','WATER','GRASS','ELECTRIC','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DARK','DRAGON','STEEL','FAIRY')">
                 <constraints nullable="false"/>
             </column>
+            <column name="damage" type="INT" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
    </changeSet>
 </databaseChangeLog>

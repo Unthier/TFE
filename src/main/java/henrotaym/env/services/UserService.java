@@ -1,25 +1,35 @@
 package henrotaym.env.services;
 
+import henrotaym.env.Factories.PokemonCatchingFactory;
+import henrotaym.env.entities.Pokemon;
 import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.entities.User;
+import henrotaym.env.exceptions.MaxNumberCatchingException;
 import henrotaym.env.http.requests.UserRequest;
 import henrotaym.env.http.resources.UserResource;
 import henrotaym.env.mappers.ResourceMapper;
 import henrotaym.env.repositories.PokemonCatchingRepository;
+import henrotaym.env.repositories.PokemonRepository;
 import henrotaym.env.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class UserService {
   private UserRepository userRepository;
   private ResourceMapper resourceMapper;
   private PokemonCatchingRepository pokemonCatchingRepository;
+  private PokemonCatchingFactory pokemonCatchingFactory;
+  private PokemonRepository pokemonRepository;
 
   public UserResource store(UserRequest request) {
     User user = new User();
@@ -69,6 +79,37 @@ public class UserService {
     user = this.resourceMapper.getUserMapper().request(request, user);
     user = this.userRepository.save(user);
 
+    return this.resourceMapper.userResource(user);
+  }
+
+  public UserResource catchPokemon(BigInteger userId) {
+    User user = this.findById(userId);
+    List<PokemonCatching> pokmeonCtaCatchings = user.getPokemonsCatching();
+    if (pokmeonCtaCatchings != null) {
+      List<PokemonCatching> catchingToday =
+          pokmeonCtaCatchings.stream()
+              .filter(
+                  pokemonCatching ->
+                      pokemonCatching
+                          .getCatchingOn()
+                          .toLocalDate()
+                          .equals(LocalDateTime.now().toLocalDate()))
+              .toList();
+      if (catchingToday.size() >= 5) {
+        throw new MaxNumberCatchingException("You can only catch 5 pokemons by day.");
+      }
+    }
+
+    List<BigInteger> ids = this.pokemonRepository.findAllIds();
+    BigInteger randomId = ids.get(new Random().nextInt(ids.size()));
+    Pokemon pokemon =
+        this.pokemonRepository
+            .findById(randomId)
+            .orElseThrow(() -> new EntityNotFoundException("Pokemon not found."));
+    PokemonCatching pokemonCatching = this.pokemonCatchingFactory.create(pokemon);
+    pokemonCatching.setUser(user);
+    user.getPokemonsCatching().add(pokemonCatching);
+    this.userRepository.save(user);
     return this.resourceMapper.userResource(user);
   }
 }

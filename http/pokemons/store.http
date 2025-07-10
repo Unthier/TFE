@@ -2,15 +2,15 @@ POST http://app:8080/api/pokemons
 Content-Type: application/json
 
 {
-    "name": "Pikachu",
-    "attack": 55,
-    "speed": 90,
+    "name": "Bulbasaur",
+    "attack": 49,
+    "speed": 45,
     "pv":35,
-    "defense":40,
-    "captureRate" : 40,
-    "type":"ELECTRIC",
-    "nextEvolutionLevel": 30,
-    "nameOfNextEvolution": "Raichu"
+    "defense":49,
+    "captureRate" : 45,
+    "type":"GRASS",
+    "nextEvolutionLevel": 16,
+    "nameOfNextEvolution": "Ivysaur"
 }
 
 # [

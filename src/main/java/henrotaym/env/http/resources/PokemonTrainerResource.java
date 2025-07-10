@@ -13,6 +13,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class PokemonTrainerResource implements HasIncludables {
   private final BigInteger id;
+  private final BigInteger pokemonId;
   private final String name;
   private final Integer attack;
   private final Integer speed;
@@ -20,6 +21,7 @@ public class PokemonTrainerResource implements HasIncludables {
   private final Integer defense;
   private final Integer level;
   private final PokemonTypeName type;
+  private final Integer damage;
   private TrainerResource trainer;
 
   @Override

@@ -3,6 +3,7 @@ package henrotaym.env.http.controllers;
 import henrotaym.env.enums.ProfileName;
 import henrotaym.env.http.requests.UserRequest;
 import henrotaym.env.http.resources.UserResource;
+import henrotaym.env.services.PokemonService;
 import henrotaym.env.services.UserService;
 import jakarta.validation.Valid;
 import java.math.BigInteger;
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Profile(ProfileName.HTTP)
 public class UserController {
   private final UserService userService;
+  private final PokemonService pokemonService;
 
   @PostMapping("")
   public ResponseEntity<UserResource> store(@RequestBody @Valid UserRequest request) {
@@ -64,5 +66,11 @@ public class UserController {
     List<UserResource> pokemons = this.userService.index();
 
     return ResponseEntity.ok(pokemons);
+  }
+
+  @PostMapping("{id}/catch")
+  public ResponseEntity<UserResource> catchPokemon(@PathVariable BigInteger id) {
+    UserResource user = this.userService.catchPokemon(id);
+    return ResponseEntity.status(HttpStatus.CREATED).body(user);
   }
 }

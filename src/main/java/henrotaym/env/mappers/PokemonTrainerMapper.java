@@ -12,13 +12,15 @@ public class PokemonTrainerMapper {
   public PokemonTrainerResource resource(PokemonTrainer pokemonTrainer) {
     return new PokemonTrainerResource(
         pokemonTrainer.getId(),
+        pokemonTrainer.getPokemonId(),
         pokemonTrainer.getName(),
         pokemonTrainer.getAttack(),
         pokemonTrainer.getSpeed(),
         pokemonTrainer.getPv(),
         pokemonTrainer.getDefense(),
         pokemonTrainer.getLevel(),
-        pokemonTrainer.getType());
+        pokemonTrainer.getType(),
+        pokemonTrainer.getDamage());
   }
 
   public PokemonTrainerRelationshipRequest relationshipRequest(PokemonTrainer pokemonTrainer) {

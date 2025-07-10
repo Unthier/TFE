@@ -3,7 +3,9 @@ package henrotaym.env.exceptions;
 import henrotaym.env.http.resources.exceptions.ApiExceptionResource;
 import henrotaym.env.mappers.ApiExceptionMapper;
 import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,6 +30,16 @@ public class GlobalExceptionHandler {
       MethodArgumentNotValidException exception) {
     ApiException apiException = this.apiExceptionMapper.methodArgumentNotValid(exception);
 
+    return this.apiExceptionMapper.responseEntity(apiException);
+  }
+
+  @ExceptionHandler(exception = MaxNumberCatchingException.class)
+  public ResponseEntity<ApiExceptionResource> handleMaxDailyCatchingReachedException(
+      MaxNumberCatchingException exception) {
+
+    ApiException apiException =
+        new ApiException(
+            exception.getMessage(), HttpStatus.BAD_REQUEST, LocalDateTime.now(), null, null, null);
     return this.apiExceptionMapper.responseEntity(apiException);
   }
 }
