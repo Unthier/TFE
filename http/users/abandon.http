@@ -1,0 +1,2 @@
+POST http://app:8080/api/users/1/pokemons/2/abandon
+Content-Type: application/json

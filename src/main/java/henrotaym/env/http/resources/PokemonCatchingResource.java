@@ -25,6 +25,8 @@ public class PokemonCatchingResource implements HasIncludables {
   private final Integer pv;
   private final Integer defense;
   private final Integer level;
+  private final String nameOfNextEvolution;
+  private final Integer nextEvolutionLevel;
   private final PokemonTypeName type;
   private final LocalDateTime catchingOn;
   private final PokemonCatchingStatusName status;

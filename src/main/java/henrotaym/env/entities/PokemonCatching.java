@@ -50,6 +50,10 @@ public class PokemonCatching {
 
   private Integer defense;
 
+  private String nameOfNextEvolution;
+
+  private Integer levelOfNextEvolution;
+
   private LocalDateTime catchingOn;
 
   private Integer damage;

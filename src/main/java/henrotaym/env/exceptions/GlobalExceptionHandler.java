@@ -42,4 +42,14 @@ public class GlobalExceptionHandler {
             exception.getMessage(), HttpStatus.BAD_REQUEST, LocalDateTime.now(), null, null, null);
     return this.apiExceptionMapper.responseEntity(apiException);
   }
+
+  @ExceptionHandler(exception = TooManyTrainingsException.class)
+  public ResponseEntity<ApiExceptionResource> handleTooManyTrainingsException(
+      TooManyTrainingsException exception) {
+
+    ApiException apiException =
+        new ApiException(
+            exception.getMessage(), HttpStatus.BAD_REQUEST, LocalDateTime.now(), null, null, null);
+    return this.apiExceptionMapper.responseEntity(apiException);
+  }
 }

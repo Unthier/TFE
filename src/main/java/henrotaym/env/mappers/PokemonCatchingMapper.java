@@ -20,6 +20,8 @@ public class PokemonCatchingMapper {
         pokemonCatching.getPv(),
         pokemonCatching.getDefense(),
         pokemonCatching.getLevel(),
+        pokemonCatching.getNameOfNextEvolution(),
+        pokemonCatching.getLevelOfNextEvolution(),
         pokemonCatching.getType(),
         pokemonCatching.getCatchingOn(),
         pokemonCatching.getStatus(),

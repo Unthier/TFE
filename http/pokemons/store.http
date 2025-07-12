@@ -1,17 +1,38 @@
 POST http://app:8080/api/pokemons
 Content-Type: application/json
 
+# {
+#     "name": "Bulbasaur",
+#     "attack": 49,
+#     "speed": 45,
+#     "pv":35,
+#     "defense":49,
+#     "captureRate" : 45,
+#     "type":"GRASS",
+#     "nextEvolutionLevel": 16,
+#     "nameOfNextEvolution": "Ivysaur"
+# }
 {
-    "name": "Bulbasaur",
-    "attack": 49,
-    "speed": 45,
-    "pv":35,
-    "defense":49,
-    "captureRate" : 45,
-    "type":"GRASS",
-    "nextEvolutionLevel": 16,
-    "nameOfNextEvolution": "Ivysaur"
+    "name": "Ivysaur",
+         "type": "GRASS",
+         "attack": 62,
+         "defense": 63,
+         "speed": 60,
+         "pv" : 60,
+         "captureRate": 45,
+         "nextEvolutionLevel": 32,
+         "nameOfNextEvolution": "Venusaur"
 }
+
+    "name": "Venusaur",
+#         "type": "GRASS",
+#         "attack": 82,
+#         "defense": 83,
+#         "speed": 80,
+#         "catchingRate": 45,
+#         "nextEvolutionLevel": null,
+#         "nameOfNextEvolution": null
+#     }
 
 # [
 #     {

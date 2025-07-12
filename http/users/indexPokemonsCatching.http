@@ -1,0 +1,2 @@
+GET http://app:8080/api/users/1/pokemons
+Content-Type: application/json

@@ -2,7 +2,9 @@ package henrotaym.env.http.controllers;
 
 import henrotaym.env.enums.ProfileName;
 import henrotaym.env.http.requests.UserRequest;
+import henrotaym.env.http.resources.PokemonCatchingResource;
 import henrotaym.env.http.resources.UserResource;
+import henrotaym.env.services.PokemonCatchingService;
 import henrotaym.env.services.PokemonService;
 import henrotaym.env.services.UserService;
 import jakarta.validation.Valid;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
   private final UserService userService;
   private final PokemonService pokemonService;
+  private final PokemonCatchingService pokemonCatchingService;
 
   @PostMapping("")
   public ResponseEntity<UserResource> store(@RequestBody @Valid UserRequest request) {
@@ -63,14 +66,46 @@ public class UserController {
 
   @GetMapping("")
   public ResponseEntity<List<UserResource>> index() {
-    List<UserResource> pokemons = this.userService.index();
+    List<UserResource> users = this.userService.index();
 
-    return ResponseEntity.ok(pokemons);
+    return ResponseEntity.ok(users);
   }
 
   @PostMapping("{id}/catch")
   public ResponseEntity<UserResource> catchPokemon(@PathVariable BigInteger id) {
     UserResource user = this.userService.catchPokemon(id);
     return ResponseEntity.status(HttpStatus.CREATED).body(user);
+  }
+
+  @GetMapping("{userid}/pokemons")
+  public ResponseEntity<List<PokemonCatchingResource>> indexPokemon(
+      @PathVariable BigInteger userid) {
+    List<PokemonCatchingResource> pokemonCatchingResources =
+        this.pokemonCatchingService.index(userid);
+    return ResponseEntity.ok(pokemonCatchingResources);
+  }
+
+  @GetMapping("{userId}/pokemons/{pokemonId}")
+  public ResponseEntity<PokemonCatchingResource> shoxPokemon(
+      @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
+    PokemonCatchingResource pokemonCatchingResource =
+        this.pokemonCatchingService.show(userId, pokemonId);
+    return ResponseEntity.ok(pokemonCatchingResource);
+  }
+
+  @PostMapping("{userId}/pokemons/{pokemonId}/abandon")
+  public ResponseEntity<PokemonCatchingResource> abandonPokemon(
+      @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
+    PokemonCatchingResource pokemonCatchingResource =
+        this.pokemonCatchingService.abandon(userId, pokemonId);
+    return ResponseEntity.ok(pokemonCatchingResource);
+  }
+
+  @PostMapping("{userId}/pokemons/{pokemonId}/training")
+  public ResponseEntity<PokemonCatchingResource> trainingPokemon(
+      @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
+    PokemonCatchingResource pokemonCatchingResource =
+        this.pokemonCatchingService.training(userId, pokemonId);
+    return ResponseEntity.ok(pokemonCatchingResource);
   }
 }

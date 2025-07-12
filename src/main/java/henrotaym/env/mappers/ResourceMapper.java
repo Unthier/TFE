@@ -1,6 +1,7 @@
 package henrotaym.env.mappers;
 
 import henrotaym.env.entities.Pokemon;
+import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.entities.Trainer;
 import henrotaym.env.entities.User;
 import henrotaym.env.http.resources.PokemonCatchingResource;
@@ -50,5 +51,9 @@ public class ResourceMapper {
     }
 
     return trainerResource;
+  }
+
+  public PokemonCatchingResource pokemonCatchingResource(PokemonCatching pokemonCatching) {
+    return this.pokemonCatchingMapper.resource(pokemonCatching);
   }
 }
