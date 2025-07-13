@@ -1,8 +1,9 @@
-PUT  http://app:8080/api/trainers/1
+PUT  http://app:8080/api/trainers/4
 Content-Type: application/json
 
 {
-    "id": 1,
-    "name": "Thierry du début de jeu",
-    "pokemonsTrainer": null
+    "id": 4,
+    "name": "Gamin du début",
+    "status": "NEUTRE",
+    "pokemonsTrainer": [ { "id": 2 }  ]
 }

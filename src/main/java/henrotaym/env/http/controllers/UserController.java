@@ -108,4 +108,7 @@ public class UserController {
         this.pokemonCatchingService.training(userId, pokemonId);
     return ResponseEntity.ok(pokemonCatchingResource);
   }
+
+  // @PostMapping("{userId}/fights/pokemons/{pokemonId}/trainers/{trainerId}")
+
 }

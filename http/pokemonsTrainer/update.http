@@ -1,0 +1,19 @@
+PUT http://app:8080/api/trainersPokemons/2
+Content-Type: application/json
+
+{
+    "id": 2,
+    "name": "Venusaur",
+    "pokemonId": 3,
+    "attack": 82,
+    "speed": 80,
+    "pv": 80,
+    "defense": 83,
+    "level": 4,
+    "captureRate": 45,
+    "type": "GRASS",
+    "trainer": {
+        "id": 1
+    },
+    "damage": 0
+}

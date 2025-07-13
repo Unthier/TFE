@@ -1,8 +1,12 @@
 package henrotaym.env.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import henrotaym.env.enums.TrainerStatusName;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,6 +36,10 @@ public class Trainer {
   @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL)
   @JsonManagedReference
   private List<PokemonTrainer> pokemons;
+
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private TrainerStatusName status;
 
   public Set<String> getIncludables() {
     return Set.of("pokemons");

@@ -1,5 +1,6 @@
 package henrotaym.env.http.resources;
 
+import henrotaym.env.enums.TrainerStatusName;
 import henrotaym.env.serializers.HasIncludables;
 import java.math.BigInteger;
 import java.util.List;
@@ -14,6 +15,7 @@ import lombok.Setter;
 public class TrainerResource implements HasIncludables {
   private final BigInteger id;
   private final String name;
+  private final TrainerStatusName status;
   private List<PokemonTrainerResource> pokemons;
 
   @Override

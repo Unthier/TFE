@@ -5,26 +5,114 @@ Content-Type: application/json
 #     "name": "Bulbasaur",
 #     "attack": 49,
 #     "speed": 45,
-#     "pv":35,
-#     "defense":49,
-#     "captureRate" : 45,
-#     "type":"GRASS",
+#     "pv": 45,
+#     "defense": 49,
+#     "captureRate": 45,
+#     "type": "GRASS",
 #     "nextEvolutionLevel": 16,
 #     "nameOfNextEvolution": "Ivysaur"
 # }
-{
-    "name": "Ivysaur",
-         "type": "GRASS",
-         "attack": 62,
-         "defense": 63,
-         "speed": 60,
-         "pv" : 60,
-         "captureRate": 45,
-         "nextEvolutionLevel": 32,
-         "nameOfNextEvolution": "Venusaur"
-}
-
+#   {
+#     "name": "Ivysaur",
+#     "attack": 62,
+#     "speed": 60,
+#     "pv": 60,
+#     "defense": 63,
+#     "captureRate": 45,
+#     "type": "GRASS",
+#     "nextEvolutionLevel": 32,
+#     "nameOfNextEvolution": "Venusaur"
+#   },
+  {
     "name": "Venusaur",
+    "attack": 82,
+    "speed": 80,
+    "pv": 80,
+    "defense": 83,
+    "captureRate": 45,
+    "type": "GRASS",
+    "nextEvolutionLevel": null,
+    "nameOfNextEvolution": null
+  }/*
+#   {
+#     "name": "Charmander",
+#     "attack": 52,
+#     "speed": 65,
+#     "pv": 39,
+#     "defense": 43,
+#     "captureRate": 45,
+#     "type": "FIRE",
+#     "nextEvolutionLevel": 16,
+#     "nameOfNextEvolution": "Charmeleon"
+#   },
+#   {
+#     "name": "Charmeleon",
+#     "attack": 64,
+#     "speed": 80,
+#     "pv": 58,
+#     "defense": 58,
+#     "captureRate": 45,
+#     "type": "FIRE",
+#     "nextEvolutionLevel": 36,
+#     "nameOfNextEvolution": "Charizard"
+#   },
+#   {
+#     "name": "Charizard",
+#     "attack": 84,
+#     "speed": 100,
+#     "pv": 78,
+#     "defense": 78,
+#     "captureRate": 45,
+#     "type": "FIRE",
+#     "nextEvolutionLevel": null,
+#     "nameOfNextEvolution": null
+#   },
+#   {
+#     "name": "Squirtle",
+#     "attack": 48,
+#     "speed": 43,
+#     "pv": 44,
+#     "defense": 65,
+#     "captureRate": 45,
+#     "type": "WATER",
+#     "nextEvolutionLevel": 16,
+#     "nameOfNextEvolution": "Wartortle"
+#   },
+#   {
+#     "name": "Wartortle",
+#     "attack": 63,
+#     "speed": 58,
+#     "pv": 59,
+#     "defense": 80,
+#     "captureRate": 45,
+#     "type": "WATER",
+#     "nextEvolutionLevel": 36,
+#     "nameOfNextEvolution": "Blastoise"
+#   },
+#   {
+#     "name": "Blastoise",
+#     "attack": 83,
+#     "speed": 78,
+#     "pv": 79,
+#     "defense": 100,
+#     "captureRate": 45,
+#     "type": "WATER",
+#     "nextEvolutionLevel": null,
+#     "nameOfNextEvolution": null
+#   },
+#   {
+#     "name": "Caterpie",
+#     "attack": 30,
+#     "speed": 45,
+#     "pv": 45,
+#     "defense": 35,
+#     "captureRate": 255,
+#     "type": "BUG",
+#     "nextEvolutionLevel": 7,
+#     "nameOfNextEvolution": "Metapod"
+#   }
+
+#   "name": "Venusaur",
 #         "type": "GRASS",
 #         "attack": 82,
 #         "defense": 83,

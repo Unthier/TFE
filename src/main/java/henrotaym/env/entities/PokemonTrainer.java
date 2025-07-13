@@ -49,8 +49,8 @@ public class PokemonTrainer {
   @Column(nullable = false)
   private PokemonTypeName type;
 
-  @ManyToOne(optional = false)
-  @JoinColumn(name = "trainer_id", nullable = false)
+  @ManyToOne(optional = true)
+  @JoinColumn(name = "trainer_id", nullable = true)
   @JsonBackReference()
   private Trainer trainer;
 }

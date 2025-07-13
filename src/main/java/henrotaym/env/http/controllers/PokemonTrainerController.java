@@ -1,9 +1,9 @@
 package henrotaym.env.http.controllers;
 
 import henrotaym.env.enums.ProfileName;
-import henrotaym.env.http.requests.TrainerRequest;
-import henrotaym.env.http.resources.TrainerResource;
-import henrotaym.env.services.TrainerService;
+import henrotaym.env.http.requests.PokemonTrainerRequest;
+import henrotaym.env.http.resources.PokemonTrainerResource;
+import henrotaym.env.services.PokemonTrainerService;
 import jakarta.validation.Valid;
 import java.math.BigInteger;
 import java.util.List;
@@ -24,53 +24,46 @@ import org.springframework.web.bind.annotation.RestController;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("trainers")
+@RequestMapping("trainersPokemons")
 @Profile(ProfileName.HTTP)
-public class TrainerController {
-  private final TrainerService trainerService;
+public class PokemonTrainerController {
+  private final PokemonTrainerService pokemonTrainerService;
 
   @PostMapping("")
-  public ResponseEntity<TrainerResource> store(@RequestBody @Valid TrainerRequest request) {
-    TrainerResource trainer = this.trainerService.store(request);
+  public ResponseEntity<PokemonTrainerResource> store(
+      @RequestBody @Valid PokemonTrainerRequest request) {
+    PokemonTrainerResource trainer = this.pokemonTrainerService.store(request);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(trainer);
   }
 
   @GetMapping("{id}")
-  public ResponseEntity<TrainerResource> show(
+  public ResponseEntity<PokemonTrainerResource> show(
       @PathVariable BigInteger id, @RequestParam(required = false) Set<String> include) {
-    TrainerResource trainer = this.trainerService.show(id, include);
+    PokemonTrainerResource trainer = this.pokemonTrainerService.show(id, include);
 
     return ResponseEntity.ok(trainer);
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<TrainerResource> update(
-      @PathVariable BigInteger id, @RequestBody @Valid TrainerRequest request) {
-    TrainerResource trainer = this.trainerService.update(id, request);
+  public ResponseEntity<PokemonTrainerResource> update(
+      @PathVariable BigInteger id, @RequestBody @Valid PokemonTrainerRequest request) {
+    PokemonTrainerResource trainer = this.pokemonTrainerService.update(id, request);
 
     return ResponseEntity.ok(trainer);
   }
 
   @DeleteMapping("{id}")
   public ResponseEntity<Object> destroy(@PathVariable BigInteger id) {
-    this.trainerService.destroy(id);
+    this.pokemonTrainerService.destroy(id);
 
     return ResponseEntity.noContent().build();
   }
 
   @GetMapping("")
-  public ResponseEntity<List<TrainerResource>> index() {
-    List<TrainerResource> trainer = this.trainerService.index();
+  public ResponseEntity<List<PokemonTrainerResource>> index() {
+    List<PokemonTrainerResource> trainer = this.pokemonTrainerService.index();
 
     return ResponseEntity.ok(trainer);
   }
-
-  // @PostMapping("{trainerId}/pokemons/{pokemonId}")
-  // public ResponseEntity<TrainerResource> addPokemonToTrainer(
-  //     @PathVariable BigInteger trainerId, @PathVariable BigInteger pokemonId) {
-  //   TrainerResource trainer = this.trainerService.addPokemonToTrainer(trainerId, pokemonId);
-
-  //   return ResponseEntity.ok(trainer);
-  // }
 }

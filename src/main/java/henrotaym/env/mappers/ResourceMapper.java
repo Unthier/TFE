@@ -2,6 +2,7 @@ package henrotaym.env.mappers;
 
 import henrotaym.env.entities.Pokemon;
 import henrotaym.env.entities.PokemonCatching;
+import henrotaym.env.entities.PokemonTrainer;
 import henrotaym.env.entities.Trainer;
 import henrotaym.env.entities.User;
 import henrotaym.env.http.resources.PokemonCatchingResource;
@@ -55,5 +56,15 @@ public class ResourceMapper {
 
   public PokemonCatchingResource pokemonCatchingResource(PokemonCatching pokemonCatching) {
     return this.pokemonCatchingMapper.resource(pokemonCatching);
+  }
+
+  public PokemonTrainerResource pokemonTrainerResource(PokemonTrainer pokemonTrainer) {
+    PokemonTrainerResource pokemonTrainerResource =
+        this.pokemonTrainerMapper.resource(pokemonTrainer);
+    if (pokemonTrainer.getTrainer() != null) {
+      TrainerResource trainerResource = this.trainerMapper.resource(pokemonTrainer.getTrainer());
+      pokemonTrainerResource.setTrainer(trainerResource);
+    }
+    return pokemonTrainerResource;
   }
 }

@@ -1,2 +1,2 @@
-GET http://app:8080/api/trainers/1
+GET http://app:8080/api/trainers/2
 Content-Type: application/json

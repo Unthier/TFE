@@ -12,10 +12,12 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class TrainerService {
   private TrainerRepository trainerRepository;
   private ResourceMapper resourceMapper;
@@ -60,11 +62,16 @@ public class TrainerService {
   private List<PokemonTrainer> getPokemonTrainers(TrainerRequest request) {
     if (request.pokemonsTrainer() == null) return null;
     return request.pokemonsTrainer().stream()
-        .map(pokemonCatching -> this.pokemonTrainerRepository.findById(pokemonCatching.id()).get())
+        .map(
+            pokemontrainer ->
+                this.pokemonTrainerRepository
+                    .findById(pokemontrainer.id())
+                    .orElseThrow(() -> new EntityNotFoundException("Trainer pokemon not found.")))
         .toList();
   }
 
   private TrainerResource storeOrUpdate(TrainerRequest request, Trainer trainer) {
+
     trainer.setPokemons(this.getPokemonTrainers(request));
     trainer = this.resourceMapper.getTrainerMapper().request(request, trainer);
     trainer = this.trainerRepository.save(trainer);

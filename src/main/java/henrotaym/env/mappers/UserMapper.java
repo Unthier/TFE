@@ -25,7 +25,7 @@ public class UserMapper {
     return user;
   }
 
-  public UserRelationshipRequest relationshipRequest(User game) {
-    return new UserRelationshipRequest(game.getId());
+  public UserRelationshipRequest relationshipRequest(User user) {
+    return new UserRelationshipRequest(user.getId());
   }
 }

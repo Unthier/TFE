@@ -31,9 +31,9 @@ public class PokemonService {
   }
 
   public PokemonResource show(BigInteger id, Set<String> include) {
-    Pokemon game = this.findById(id);
+    Pokemon pokemon = this.findById(id);
 
-    return this.resourceMapper.pokemonResource(game);
+    return this.resourceMapper.pokemonResource(pokemon);
   }
 
   public List<PokemonResource> index() {
@@ -43,9 +43,9 @@ public class PokemonService {
   }
 
   public void destroy(BigInteger id) {
-    Pokemon game = this.findById(id);
+    Pokemon pokemon = this.findById(id);
 
-    this.pokemonRepository.delete(game);
+    this.pokemonRepository.delete(pokemon);
   }
 
   private Pokemon findById(BigInteger id) {

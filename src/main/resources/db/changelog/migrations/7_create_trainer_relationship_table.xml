@@ -7,7 +7,7 @@
    <changeSet id="7_create_trainer_relationship_table" author="henrotaym">
         <addColumn tableName="pokemons_trainer">
             <column name="trainer_id" type="BIGINT">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
         </addColumn>
         <addForeignKeyConstraint baseColumnNames="trainer_id"
@@ -15,6 +15,7 @@
             constraintName="fk_pokemons_trainer_id"
             referencedColumnNames="id"
             referencedTableName="trainers"
+            nullable="true"
         />
    </changeSet>
 </databaseChangeLog>
