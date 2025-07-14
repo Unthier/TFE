@@ -1,6 +1,7 @@
 package henrotaym.env.http.requests;
 
 import henrotaym.env.enums.UserRoleName;
+import henrotaym.env.http.requests.relationships.FightRelationshipRequest;
 import henrotaym.env.http.requests.relationships.PokemonCatchingRelationshipRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -12,4 +13,5 @@ public record UserRequest(
     @Valid String password,
     @NotNull UserRoleName role,
     @NotNull String mail,
-    @Valid List<PokemonCatchingRelationshipRequest> pokemonsCatching) {}
+    @Valid List<PokemonCatchingRelationshipRequest> pokemonsCatching,
+    @Valid List<FightRelationshipRequest> fights) {}

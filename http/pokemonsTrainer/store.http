@@ -11,6 +11,6 @@ Content-Type: application/json
     "level": 4,
     "captureRate": 45,
     "type": "GRASS",
-    "trainer": {"id" : 3},
+    "trainer": null,
     "damage": 0
 }

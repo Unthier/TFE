@@ -20,10 +20,11 @@ public class UserResource implements HasIncludables {
   // private final Integer catching_number;
   private final String mail;
   private List<PokemonCatchingResource> pokemonsCatching;
+  private List<FightResource> fights;
 
   @Override
   public Set<String> includables() {
-    return Set.of("pokemonsCatching");
+    return Set.of("pokemonsCatching", "fights");
     // throw new UnsupportedOperationException("Unimplemented method 'includables'");
   }
 }

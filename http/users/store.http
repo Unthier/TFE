@@ -6,5 +6,6 @@ Content-Type: application/json
     "password": "HelloHello1@",
     "role": "USER",
     "mail": "ttot@gmail.com",
-    "pokemonsCatching": null
+    "pokemonsCatching": null,
+    "fights": null
 }
