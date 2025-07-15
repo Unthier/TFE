@@ -51,18 +51,23 @@ public class User {
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   @JsonManagedReference
-  private List<PokemonCatching> pokemonsCatching = new ArrayList<PokemonCatching>();
+  private List<PokemonCatching> pokemonsCatchings = new ArrayList<PokemonCatching>();
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   @JsonManagedReference
   private List<Fight> fights = new ArrayList<Fight>();
 
-  //   public void setPokemonsCatching(List<PokemonCatching> pokemonCatchings) {
-  //     this.pokemonsCatching.clear();
-  //     this.pokemonsCatching.addAll(pokemonCatchings);
-  //   }
+  // public void setPokemonsCatching(List<PokemonCatching> pokemonCatchings) {
+  //   this.pokemonsCatchings.clear();
+  //   this.pokemonsCatchings.addAll(pokemonCatchings);
+  // }
+
+  public void setPokemonsCatching(List<Fight> fights) {
+    this.fights.clear();
+    this.fights.addAll(fights);
+  }
 
   public Set<String> getIncludables() {
-    return Set.of("pokemonsCatching", "fights");
+    return Set.of("pokemonsCatchings", "fights");
   }
 }

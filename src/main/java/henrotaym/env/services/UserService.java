@@ -75,7 +75,7 @@ public class UserService {
   }
 
   private UserResource storeOrUpdate(UserRequest request, User user) {
-    user.setPokemonsCatching(this.getPokemonCatching(request));
+    user.setPokemonsCatchings(this.getPokemonCatching(request));
     user = this.resourceMapper.getUserMapper().request(request, user);
     user = this.userRepository.save(user);
 
@@ -84,7 +84,7 @@ public class UserService {
 
   public UserResource catchPokemon(BigInteger userId) {
     User user = this.findById(userId);
-    List<PokemonCatching> pokmeonCtaCatchings = user.getPokemonsCatching();
+    List<PokemonCatching> pokmeonCtaCatchings = user.getPokemonsCatchings();
     if (pokmeonCtaCatchings != null) {
       List<PokemonCatching> catchingToday =
           pokmeonCtaCatchings.stream()
@@ -108,7 +108,7 @@ public class UserService {
             .orElseThrow(() -> new EntityNotFoundException("Pokemon not found."));
     PokemonCatching pokemonCatching = this.pokemonCatchingFactory.create(pokemon);
     pokemonCatching.setUser(user);
-    user.getPokemonsCatching().add(pokemonCatching);
+    user.getPokemonsCatchings().add(pokemonCatching);
     this.userRepository.save(user);
     return this.resourceMapper.userResource(user);
   }

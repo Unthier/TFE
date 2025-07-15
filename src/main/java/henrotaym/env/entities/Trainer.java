@@ -37,6 +37,11 @@ public class Trainer {
   @JsonManagedReference
   private List<PokemonTrainer> pokemons;
 
+  public void setPokemonsCatching(List<PokemonTrainer> pokemonTrainers) {
+    this.pokemons.clear();
+    this.pokemons.addAll(pokemonTrainers);
+  }
+
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private TrainerStatusName status;

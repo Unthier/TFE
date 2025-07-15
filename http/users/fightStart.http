@@ -1,0 +1,2 @@
+POST http://app:8080/api/users/1/fights/pokemons/3/trainer/3
+Content-Type: application/json

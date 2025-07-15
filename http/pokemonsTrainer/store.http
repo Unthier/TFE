@@ -2,15 +2,29 @@ POST http://app:8080/api/trainersPokemons
 Content-Type: application/json
 
 {
-    "name": "Venusaur",
-    "pokemonId": 3,
-    "attack": 82,
-    "speed": 80,
-    "pv": 80,
-    "defense": 83,
+    "name": "Bulbasaur",
+    "pokemonId": 1,
+    "attack": 49,
+    "speed": 45,
+    "pv": 45,
+    "defense": 49,
     "level": 4,
     "captureRate": 45,
     "type": "GRASS",
-    "trainer": null,
+    "trainer": {
+        "id": 3
+    },
     "damage": 0
 }
+
+# {
+#     "name": "Bulbasaur",
+#     "attack": 49,
+#     "speed": 45,
+#     "pv": 45,
+#     "defense": 49,
+#     "captureRate": 45,
+#     "type": "GRASS",
+#     "nextEvolutionLevel": 16,
+#     "nameOfNextEvolution": "Ivysaur"
+# }

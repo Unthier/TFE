@@ -1,5 +1,6 @@
 package henrotaym.env.mappers;
 
+import henrotaym.env.entities.Fight;
 import henrotaym.env.entities.Pokemon;
 import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.entities.PokemonTrainer;
@@ -33,12 +34,12 @@ public class ResourceMapper {
 
   public UserResource userResource(User user) {
     UserResource userResource = this.userMapper.resource(user);
-    if (user.getPokemonsCatching() != null) {
+    if (user.getPokemonsCatchings() != null) {
       List<PokemonCatchingResource> pokemonCatchings =
-          user.getPokemonsCatching().stream()
+          user.getPokemonsCatchings().stream()
               .map(pokemonCatching -> this.pokemonCatchingMapper.resource(pokemonCatching))
               .toList();
-      userResource.setPokemonsCatching(pokemonCatchings);
+      userResource.setPokemonsCatchings(pokemonCatchings);
     }
     if (user.getFights() != null) {
       List<FightResource> fights =
@@ -73,5 +74,9 @@ public class ResourceMapper {
       pokemonTrainerResource.setTrainer(trainerResource);
     }
     return pokemonTrainerResource;
+  }
+
+  public FightResource fightResource(Fight fight) {
+    return this.fightMapper.resource(fight);
   }
 }

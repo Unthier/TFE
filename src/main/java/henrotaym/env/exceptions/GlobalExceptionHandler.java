@@ -52,4 +52,13 @@ public class GlobalExceptionHandler {
             exception.getMessage(), HttpStatus.BAD_REQUEST, LocalDateTime.now(), null, null, null);
     return this.apiExceptionMapper.responseEntity(apiException);
   }
+
+  @ExceptionHandler(exception = UserAlreadyInFightException.class)
+  public ResponseEntity<ApiExceptionResource> handleUserAlreadyInFightException(
+      UserAlreadyInFightException exception) {
+    ApiException apiException =
+        new ApiException(
+            exception.getMessage(), HttpStatus.BAD_REQUEST, LocalDateTime.now(), null, null, null);
+    return this.apiExceptionMapper.responseEntity(apiException);
+  }
 }

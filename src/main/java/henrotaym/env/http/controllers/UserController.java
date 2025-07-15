@@ -2,8 +2,10 @@ package henrotaym.env.http.controllers;
 
 import henrotaym.env.enums.ProfileName;
 import henrotaym.env.http.requests.UserRequest;
+import henrotaym.env.http.resources.FightResource;
 import henrotaym.env.http.resources.PokemonCatchingResource;
 import henrotaym.env.http.resources.UserResource;
+import henrotaym.env.services.FightService;
 import henrotaym.env.services.PokemonCatchingService;
 import henrotaym.env.services.PokemonService;
 import henrotaym.env.services.UserService;
@@ -33,6 +35,7 @@ public class UserController {
   private final UserService userService;
   private final PokemonService pokemonService;
   private final PokemonCatchingService pokemonCatchingService;
+  private final FightService fightService;
 
   @PostMapping("")
   public ResponseEntity<UserResource> store(@RequestBody @Valid UserRequest request) {
@@ -109,6 +112,23 @@ public class UserController {
     return ResponseEntity.ok(pokemonCatchingResource);
   }
 
-  // @PostMapping("{userId}/fights/pokemons/{pokemonId}/trainers/{trainerId}")
+  @PostMapping("{userId}/fights/pokemons/{pokemonId}/trainer/{trainerId}")
+  public String fightPokemonStart(
+      @PathVariable BigInteger userId,
+      @PathVariable BigInteger pokemonId,
+      @PathVariable BigInteger trainerId) {
 
+    return this.fightService.store(userId, pokemonId, trainerId);
+  }
+
+  @PostMapping("{userId}/fights/{fightId}/abandon")
+  public String fightAbandon(@PathVariable BigInteger userId, @PathVariable BigInteger fightId) {
+    return this.fightService.fightAbandoned(userId, fightId);
+  }
+
+  @GetMapping("{userId}/fights")
+  public ResponseEntity<List<FightResource>> indexFights(@PathVariable BigInteger userId) {
+    List<FightResource> fights = this.fightService.index(userId);
+    return ResponseEntity.ok(fights);
+  }
 }

@@ -2,7 +2,10 @@ package henrotaym.env.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import henrotaym.env.enums.FightStateName;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,6 +39,8 @@ public class Fight {
 
   private Integer tours;
 
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
   private FightStateName state;
 
   @ManyToOne
