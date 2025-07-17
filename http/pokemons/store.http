@@ -1,17 +1,17 @@
 POST http://app:8080/api/pokemons
 Content-Type: application/json
 
-# {
-#     "name": "Bulbasaur",
-#     "attack": 49,
-#     "speed": 45,
-#     "pv": 45,
-#     "defense": 49,
-#     "captureRate": 45,
-#     "type": "GRASS",
-#     "nextEvolutionLevel": 16,
-#     "nameOfNextEvolution": "Ivysaur"
-# }
+{
+    "name": "Bulbasaur",
+    "attack": 49,
+    "speed": 45,
+    "pv": 45,
+    "defense": 49,
+    "captureRate": 45,
+    "type": "GRASS",
+    "nextEvolutionLevel": 16,
+    "nameOfNextEvolution": "Ivysaur"
+}/*
 #   {
 #     "name": "Ivysaur",
 #     "attack": 62,

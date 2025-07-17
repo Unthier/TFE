@@ -18,5 +18,6 @@ public enum PokemonTypeName {
   DARK,
   DRAGON,
   STEEL,
-  FAIRY
+  FAIRY,
+  EGG
 }

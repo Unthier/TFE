@@ -54,7 +54,6 @@ public class PokemonTrainerService {
   }
 
   private PokemonTrainer findById(BigInteger id) {
-    log.info(id.toString());
 
     return this.pokemonTrainerRepository
         .findById(id)

@@ -3,6 +3,7 @@ package henrotaym.env.Factories;
 import henrotaym.env.entities.Pokemon;
 import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.enums.PokemonCatchingStatusName;
+import henrotaym.env.enums.PokemonTypeName;
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,22 @@ public class PokemonCatchingFactory {
     pokemonCatching.setDamage(0);
     pokemonCatching.setNameOfNextEvolution(pokemon.getNameOfNextEvolution());
     pokemonCatching.setLevelOfNextEvolution(pokemon.getNextEvolutionLevel());
+    return pokemonCatching;
+  }
+
+  public PokemonCatching createEgg() {
+    PokemonCatching pokemonCatching = new PokemonCatching();
+    pokemonCatching.setCatchingOn(LocalDateTime.now());
+    pokemonCatching.setAttack(0);
+    pokemonCatching.setSpeed(0);
+    pokemonCatching.setDefense(0);
+    pokemonCatching.setPv(0);
+    pokemonCatching.setLevel(0);
+    pokemonCatching.setType(PokemonTypeName.EGG);
+    pokemonCatching.setStatus(PokemonCatchingStatusName.EGG);
+    pokemonCatching.setDamage(0);
+    pokemonCatching.setNameOfNextEvolution(null);
+    pokemonCatching.setLevelOfNextEvolution(null);
     return pokemonCatching;
   }
 

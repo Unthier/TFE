@@ -4,5 +4,5 @@ Content-Type: application/json
 {
     "name": "Gamin null de la ville",
     "status": "NEUTRE",
-    "pokemonsTrainer": [ { "id": 2 }  ]
+    "pokemonsTrainer": null
 }

@@ -33,7 +33,7 @@
             <column name="name_of_next_evolution" type="VARCHAR(255)">
                 <constraints nullable="true"/>
             </column>
-            <column name="type" type="ENUM('NORMAL','FIRE','WATER','GRASS','ELECTRIC','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DARK','DRAGON','STEEL','FAIRY')">
+            <column name="type" type="ENUM('EGG','NORMAL','FIRE','WATER','GRASS','ELECTRIC','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DARK','DRAGON','STEEL','FAIRY')">
                 <constraints nullable="false"/>
             </column>
         </createTable>

@@ -1,5 +1,6 @@
 package henrotaym.env.services;
 
+import henrotaym.env.Factories.PokemonCatchingFactory;
 import henrotaym.env.entities.Fight;
 import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.entities.PokemonTrainer;
@@ -32,6 +33,7 @@ public class FightService {
   private final PokemonCatchingRepository pokemonCatchingRepository;
   private final TrainerRepository trainerRepository;
   private final PokemonTrainerRepository pokemonTrainerRepository;
+  private final PokemonCatchingFactory pokemonCatchingFactory;
 
   public List<FightResource> index(BigInteger userId) {
     return this.fightRepository.findAll().stream()
@@ -117,7 +119,10 @@ public class FightService {
     if (fight.getState() == FightStateName.WINED) {
       return "You win in the firts tours! Congratulation .";
     }
-
+    Integer random = (int) (Math.random() * 2);
+    if (random == 0) {
+      return this.getReward(user);
+    }
     return "You lost in the first tours. Training yours Pokémons and another day you win.";
   }
 
@@ -174,7 +179,6 @@ public class FightService {
   }
 
   public String fightContinue(BigInteger userId) {
-    log.info("Fight continue for user: {}", userId);
     User user =
         this.userRepository
             .findById(userId)
@@ -210,12 +214,15 @@ public class FightService {
     }
     pokemonCatching.setStatus(PokemonCatchingStatusName.NEUTRE);
     this.pokemonCatchingRepository.save(pokemonCatching);
-    if (fight.getState() == FightStateName.WINED) {
-
-      return "You win! Congratulation .";
+    if (fight.getState() == FightStateName.LOSED) {
+      return "You lost. Training yours Pokémons and another day you win.";
     }
 
-    return "You lost. Training yours Pokémons and another day you win.";
+    Integer random = (int) (Math.random() * 2);
+    if (random == 0) {
+      return this.getReward(user);
+    }
+    return "You win! Congratulation .";
   }
 
   private Fight fightNextTour(
@@ -257,5 +264,14 @@ public class FightService {
     }
     fight.setState(this.getFightState(fight, pokemonCatching, pokemonTrainer));
     return fight;
+  }
+
+  private String getReward(User user) {
+
+    PokemonCatching pokemonCatching = this.pokemonCatchingFactory.createEgg();
+    pokemonCatching.setUser(user);
+    user.getPokemonsCatchings().add(pokemonCatching);
+    this.userRepository.save(user);
+    return "You win! and you get en egg as reward. This egg will hatch in 6 houres.";
   }
 }
