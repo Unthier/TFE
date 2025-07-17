@@ -131,4 +131,10 @@ public class UserController {
     List<FightResource> fights = this.fightService.index(userId);
     return ResponseEntity.ok(fights);
   }
+
+  @PostMapping("{userId}/fights/continue")
+  public String fightContinue(@PathVariable BigInteger userId) {
+
+    return this.fightService.fightContinue(userId);
+  }
 }

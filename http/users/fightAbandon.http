@@ -1,2 +1,2 @@
-POST http://app:8080/api/users/1/fights/2/abandon
+POST http://app:8080/api/users/1/fights/8/abandon
 Content-Type: application/json

@@ -53,8 +53,9 @@ public class PokemonCatchingService {
   public PokemonCatchingResource training(BigInteger userId, BigInteger pokemonId) {
     PokemonCatching pokemonCatching = this.findById(userId, pokemonId);
 
-    if (pokemonCatching.getStatus() == PokemonCatchingStatusName.ABANDONED) {
-      throw new EntityNotFoundException("Pokémon catching is abandoned and cannot be trained.");
+    if (pokemonCatching.getStatus() == PokemonCatchingStatusName.ABANDONED
+        || pokemonCatching.getStatus() == PokemonCatchingStatusName.FIGHT) {
+      throw new EntityNotFoundException("Pokémon catching is in fight or abandoned.");
     }
     if (pokemonCatching.getTrainings().size() >= 5) {
       LocalDateTime now = LocalDateTime.now();

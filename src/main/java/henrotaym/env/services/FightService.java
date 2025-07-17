@@ -6,6 +6,7 @@ import henrotaym.env.entities.PokemonTrainer;
 import henrotaym.env.entities.Trainer;
 import henrotaym.env.entities.User;
 import henrotaym.env.enums.FightStateName;
+import henrotaym.env.enums.PokemonCatchingStatusName;
 import henrotaym.env.exceptions.UserAlreadyInFightException;
 import henrotaym.env.http.resources.FightResource;
 import henrotaym.env.mappers.ResourceMapper;
@@ -18,10 +19,12 @@ import jakarta.persistence.EntityNotFoundException;
 import java.math.BigInteger;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class FightService {
   private final FightRepository fightRepository;
   private final ResourceMapper resourceMapper;
@@ -83,20 +86,39 @@ public class FightService {
     PokemonCatching pokemonCatching =
         this.pokemonCatchingRepository
             .findById(pokemonCatchinBigInteger)
+            .filter(pokemon -> pokemon.getStatus() != PokemonCatchingStatusName.ABANDONED)
             .orElseThrow(() -> new EntityNotFoundException("Pokemon catching not found."));
+    pokemonCatching.setStatus(PokemonCatchingStatusName.FIGHT);
     PokemonTrainer pokemonTrainer = trainer.getPokemons().get(0);
+
     if (pokemonTrainer == null) {
       throw new EntityNotFoundException("Trainer has no Pokemon.");
     }
     fight = this.startTour(pokemonCatching, pokemonTrainer);
+    fight.setState(this.getFightState(fight, pokemonCatching, pokemonTrainer));
     fight.setUser(user);
     fight.setPokemonCatchingId(pokemonCatching.getId());
-    fight.setPokemonTrainerId(trainer.getId());
+    fight.setPokemonTrainerId(pokemonTrainer.getId());
     fight.setTours(1);
-    fight.setState(FightStateName.IN_PROGRESS);
     this.fightRepository.save(fight);
 
-    return "Fight created successfully.";
+    if (fight.getState() == FightStateName.IN_PROGRESS) {
+      Integer pokemonCatchingPv = pokemonCatching.getPv() - fight.getPokemonCatchingDamage();
+      Integer pokemonTrainerPv = pokemonTrainer.getPv() - fight.getPokemonTrainerDamage();
+      return "Fight started. Your pokémon has "
+          + pokemonCatchingPv
+          + " PV and the trainer's pokémon has "
+          + pokemonTrainerPv
+          + " PV.";
+    }
+    pokemonCatching.setStatus(PokemonCatchingStatusName.NEUTRE);
+    this.pokemonCatchingRepository.save(pokemonCatching);
+
+    if (fight.getState() == FightStateName.WINED) {
+      return "You win in the firts tours! Congratulation .";
+    }
+
+    return "You lost in the first tours. Training yours Pokémons and another day you win.";
   }
 
   private Fight startTour(PokemonCatching pokemonCatching, PokemonTrainer pokemonTrainer) {
@@ -109,14 +131,12 @@ public class FightService {
       if (trainerDamage <= 0) {
         trainerDamage = 1;
       }
-      pokemonTrainer.setDamage(trainerDamage);
       fight.setPokemonTrainerDamage(trainerDamage);
     } else {
       Integer userDamage = pokemonTrainer.getAttack() - pokemonCatching.getDefense();
       if (userDamage <= 0) {
         userDamage = 1;
       }
-      pokemonCatching.setDamage(userDamage);
       fight.setPokemonCatchingDamage(userDamage);
     }
 
@@ -126,7 +146,6 @@ public class FightService {
         if (userDamage <= 0) {
           userDamage = 1;
         }
-        pokemonCatching.setDamage(userDamage);
         fight.setPokemonCatchingDamage(userDamage);
       }
 
@@ -136,11 +155,107 @@ public class FightService {
         if (trainerDamage <= 0) {
           trainerDamage = 1;
         }
-        pokemonTrainer.setDamage(trainerDamage);
         fight.setPokemonTrainerDamage(trainerDamage);
       }
     }
+    return fight;
+  }
 
+  private FightStateName getFightState(
+      Fight fight, PokemonCatching pokemonCatching, PokemonTrainer pokemonTrainer) {
+    if (pokemonCatching.getPv() > fight.getPokemonCatchingDamage()
+        && pokemonTrainer.getPv() < fight.getPokemonTrainerDamage()) {
+      return FightStateName.WINED;
+    } else if (pokemonCatching.getPv() < fight.getPokemonCatchingDamage()
+        && pokemonTrainer.getPv() > fight.getPokemonTrainerDamage()) {
+      return FightStateName.LOSED;
+    }
+    return FightStateName.IN_PROGRESS;
+  }
+
+  public String fightContinue(BigInteger userId) {
+    log.info("Fight continue for user: {}", userId);
+    User user =
+        this.userRepository
+            .findById(userId)
+            .orElseThrow(() -> new EntityNotFoundException("User not found."));
+    Fight fight =
+        this.findById(
+            userId,
+            user.getFights().stream()
+                .filter(f -> f.getState().equals(FightStateName.IN_PROGRESS))
+                .findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("No fight in progress."))
+                .getId());
+    PokemonCatching pokemonCatching =
+        this.pokemonCatchingRepository
+            .findById(fight.getPokemonCatchingId())
+            .orElseThrow(() -> new EntityNotFoundException("Pokemon catching not found."));
+    PokemonTrainer pokemonTrainer =
+        this.pokemonTrainerRepository
+            .findById(fight.getPokemonTrainerId())
+            .orElseThrow(() -> new EntityNotFoundException("Pokemon trainer not found."));
+
+    fight = this.fightNextTour(fight, pokemonCatching, pokemonTrainer);
+    fight.setTours(fight.getTours() + 1);
+    this.fightRepository.save(fight);
+    if (fight.getState() == FightStateName.IN_PROGRESS) {
+      Integer pokemonCatchingPv = pokemonCatching.getPv() - fight.getPokemonCatchingDamage();
+      Integer pokemonTrainerPv = pokemonTrainer.getPv() - fight.getPokemonTrainerDamage();
+      return "Fight in progress. Your pokémon has "
+          + pokemonCatchingPv
+          + " PV and the trainer's pokémon has "
+          + pokemonTrainerPv
+          + " PV.";
+    }
+    pokemonCatching.setStatus(PokemonCatchingStatusName.NEUTRE);
+    this.pokemonCatchingRepository.save(pokemonCatching);
+    if (fight.getState() == FightStateName.WINED) {
+
+      return "You win! Congratulation .";
+    }
+
+    return "You lost. Training yours Pokémons and another day you win.";
+  }
+
+  private Fight fightNextTour(
+      Fight fight, PokemonCatching pokemonCatching, PokemonTrainer pokemonTrainer) {
+
+    Boolean isCatchingStarted = false;
+    if (pokemonCatching.getSpeed() > pokemonTrainer.getSpeed()) {
+      isCatchingStarted = true;
+      Integer trainerDamage = pokemonCatching.getAttack() - pokemonTrainer.getDefense();
+      if (trainerDamage <= 0) {
+        trainerDamage = 1;
+      }
+      fight.setPokemonTrainerDamage(trainerDamage + fight.getPokemonTrainerDamage());
+    } else {
+      Integer userDamage = pokemonTrainer.getAttack() - pokemonCatching.getDefense();
+      if (userDamage <= 0) {
+        userDamage = 1;
+      }
+      fight.setPokemonCatchingDamage(userDamage + fight.getPokemonCatchingDamage());
+    }
+
+    if (isCatchingStarted) {
+      if (pokemonTrainer.getPv() > pokemonTrainer.getDamage()) {
+        Integer userDamage = pokemonTrainer.getAttack() - pokemonCatching.getDefense();
+        if (userDamage <= 0) {
+          userDamage = 1;
+        }
+        fight.setPokemonCatchingDamage(userDamage + fight.getPokemonCatchingDamage());
+      }
+
+    } else {
+      if (pokemonCatching.getPv() > pokemonCatching.getDamage()) {
+        Integer trainerDamage = pokemonCatching.getAttack() - pokemonTrainer.getDefense();
+        if (trainerDamage <= 0) {
+          trainerDamage = 1;
+        }
+        fight.setPokemonTrainerDamage(trainerDamage + fight.getPokemonTrainerDamage());
+      }
+    }
+    fight.setState(this.getFightState(fight, pokemonCatching, pokemonTrainer));
     return fight;
   }
 }
