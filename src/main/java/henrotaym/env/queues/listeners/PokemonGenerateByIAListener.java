@@ -10,7 +10,6 @@ import henrotaym.env.enums.ProfileName;
 import henrotaym.env.queues.events.PokemonGenerateByIAEvent;
 import henrotaym.env.repositories.PokemonRepository;
 import io.github.cdimascio.dotenv.Dotenv;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -34,37 +33,43 @@ public class PokemonGenerateByIAListener implements Listener<PokemonGenerateByIA
   @KafkaRetryableListener(PokemonGenerateByIAEvent.EVENT_NAME)
   public void listen(PokemonGenerateByIAEvent event) {
     log.info("Pokemon generate by IA event received: {}", event.getMessage());
+    List<String> pokemonNames = pokemonRepository.findAll().stream().map(Pokemon::getName).toList();
+
+    log.info("Current Pokémon names: {}", pokemonNames);
 
     Dotenv dotenv = Dotenv.load();
     String apiKey = dotenv.get("OPENAI_API_KEY");
     HttpClient client = HttpClient.newHttpClient();
 
     String prompt =
-        """
-        Tu dois générer un ou plusieurs Pokémon totalement inventés.
-        Privilégie les Pokémon sans évolution, mais tu peux en créer avec une ou deux formes évoluées au maximum.
+        String.format(
+            """
+            Tu dois générer un ou plusieurs Pokémon totalement inventés.
+            Privilégie les Pokémon sans évolution, mais tu peux en créer avec une ou deux formes évoluées au maximum.
 
-        Voici la structure JSON attendue :
-        [
-          {
-            "name": "Nom unique",
-            "type": "Un des types suivants : NORMAL, FIRE, WATER, GRASS, ELECTRIC, ICE, FIGHTING, POISON, GROUND, FLYING, PSYCHIC, BUG, ROCK, GHOST, DARK, DRAGON, STEEL, FAIRY",
-            "pv": 70,
-            "attack": 80,
-            "defense": 60,
-            "speed": 75,
-            "captureRate": 50,
-            "nextEvolutionLevel": null,
-            "nameOfNextEvolution": null
-          }
-        ]
+            Voici la structure JSON attendue :
+            [
+              {
+                "name": "Nom unique",
+                "type": "Un des types suivants : NORMAL, FIRE, WATER, GRASS, ELECTRIC, ICE, FIGHTING, POISON, GROUND, FLYING, PSYCHIC, BUG, ROCK, GHOST, DARK, DRAGON, STEEL, FAIRY",
+                "pv": 70,
+                "attack": 80,
+                "defense": 60,
+                "speed": 75,
+                "captureRate": 50,
+                "nextEvolutionLevel": null,
+                "nameOfNextEvolution": null
+              }
+            ]
 
-        Règles :
-        - Réponds uniquement avec un tableau JSON, sans aucune explication ni commentaire.
-        - Si tu veux créer une évolution, ajoute un deuxième objet dans le tableau représentant la forme évoluée.
-        - Si un Pokémon évolue une deuxième fois (maximum 3 formes au total), ajoute un troisième objet.
-        - Le champ `nameOfNextEvolution` doit être `null` pour le dernier stade d’évolution.
-        """;
+            Règles :
+            - Réponds uniquement avec un tableau JSON, sans aucune explication ni commentaire.
+            - Si tu veux créer une évolution, ajoute un deuxième objet dans le tableau représentant la forme évoluée.
+            - Si un Pokémon évolue une deuxième fois (maximum 3 formes au total), ajoute un troisième objet.
+            - Le champ `nameOfNextEvolution` doit être `null` pour le dernier stade d’évolution.
+            - J'ai déjà ça comme nom de Pokémon : %s
+            """,
+            pokemonNames);
 
     ObjectMapper mapper = new ObjectMapper();
 
