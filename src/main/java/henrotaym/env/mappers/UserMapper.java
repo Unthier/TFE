@@ -1,5 +1,6 @@
 package henrotaym.env.mappers;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 // import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,12 +16,12 @@ public class UserMapper {
   }
 
   public User request(UserRequest request, User user) {
-    // BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     user.setName(request.name());
     user.setMail(request.mail());
     user.setRole(request.role());
     //user.setCaptchingNumber(request.catchingNumber());
-    user.setPassword(request.password());
+    user.setPassword(passwordEncoder.encode(request.password()));
 
     return user;
   }
