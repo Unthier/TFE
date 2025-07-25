@@ -14,8 +14,9 @@ public class SpringSecurityConfiguration {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     return http.authorizeHttpRequests(
             auth -> {
-              // auth.anyRequest().authenticated();
-              auth.requestMatchers("/api/user").permitAll();
+              // auth.anyRequest().permitAll();
+              auth.requestMatchers("/pokemons").permitAll();
+              auth.requestMatchers("/pokemons/**").permitAll();
               auth.anyRequest().authenticated();
             })
         .logout(
@@ -36,35 +37,4 @@ public class SpringSecurityConfiguration {
         //     )
         .build();
   }
-
-  // @Bean
-  // public UserDetailsService users() {
-  //   UserDetails guest =
-  //       User.builder()
-  //           .username("guest")
-  //           .password(passwordEncoder().encode("guest"))
-  //           .roles(UserRoleName.GUEST.toString())
-  //           .build();
-  //   UserDetails user =
-  //       User.builder()
-  //           .username("user")
-  //           .password(passwordEncoder().encode("user"))
-  //           .roles(UserRoleName.USER.toString(), UserRoleName.GUEST.toString())
-  //           .build();
-  //   UserDetails admin =
-  //       User.builder()
-  //           .username("admin")
-  //           .password(passwordEncoder().encode("admin"))
-  //           .roles(
-  //               UserRoleName.ADMIN.toString(),
-  //               UserRoleName.USER.toString(),
-  //               UserRoleName.GUEST.toString())
-  //           .build();
-  //   return new InMemoryUserDetailsManager(guest, user, admin);
-  // }
-
-  // @Bean
-  // public BCryptPasswordEncoder passwordEncoder() {
-  //   return new BCryptPasswordEncoder();
-  // }
 }

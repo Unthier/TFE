@@ -1,10 +1,12 @@
 package henrotaym.env.http.controllers;
 
+import henrotaym.env.entities.User;
 import henrotaym.env.enums.ProfileName;
 import henrotaym.env.http.requests.UserRequest;
 import henrotaym.env.http.resources.FightResource;
 import henrotaym.env.http.resources.PokemonCatchingResource;
 import henrotaym.env.http.resources.UserResource;
+import henrotaym.env.services.AuthSercive;
 import henrotaym.env.services.FightService;
 import henrotaym.env.services.PokemonCatchingService;
 import henrotaym.env.services.PokemonService;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +39,7 @@ public class UserController {
   private final PokemonService pokemonService;
   private final PokemonCatchingService pokemonCatchingService;
   private final FightService fightService;
+  private final AuthSercive authSercive;
 
   @PostMapping("")
   public ResponseEntity<UserResource> store(@RequestBody @Valid UserRequest request) {
@@ -78,6 +82,16 @@ public class UserController {
   public ResponseEntity<UserResource> catchPokemon(@PathVariable BigInteger id) {
     UserResource user = this.userService.catchPokemon(id);
     return ResponseEntity.status(HttpStatus.CREATED).body(user);
+  }
+
+  @PostMapping("/catch")
+  public ResponseEntity<UserResource> catchPokemon(
+      @RequestHeader("Authorization") String bearerToken) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+
+    UserResource userResource = this.userService.catchPokemon(user);
+    return ResponseEntity.status(HttpStatus.CREATED).body(userResource);
   }
 
   @GetMapping("{userid}/pokemons")
