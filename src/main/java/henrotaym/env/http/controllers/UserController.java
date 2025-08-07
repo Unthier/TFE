@@ -36,7 +36,6 @@ import org.springframework.web.bind.annotation.RestController;
 @Profile(ProfileName.HTTP)
 public class UserController {
   private final UserService userService;
-  private final PokemonService pokemonService;
   private final PokemonCatchingService pokemonCatchingService;
   private final FightService fightService;
   private final AuthSercive authSercive;
@@ -80,7 +79,7 @@ public class UserController {
 
   @PostMapping("{id}/catch")
   public ResponseEntity<UserResource> catchPokemon(@PathVariable BigInteger id) {
-    UserResource user = this.userService.catchPokemon(id);
+    UserResource user = this.pokemonCatchingService.catchPokemon(id);
     return ResponseEntity.status(HttpStatus.CREATED).body(user);
   }
 
@@ -90,7 +89,7 @@ public class UserController {
     String token = bearerToken.replace("Bearer ", "");
     User user = this.authSercive.getUserFromToken(token);
 
-    UserResource userResource = this.userService.catchPokemon(user);
+    UserResource userResource = this.pokemonCatchingService.catchPokemon(user);
     return ResponseEntity.status(HttpStatus.CREATED).body(userResource);
   }
 

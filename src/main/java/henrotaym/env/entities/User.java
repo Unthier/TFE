@@ -57,11 +57,6 @@ public class User {
   @JsonManagedReference
   private List<Fight> fights = new ArrayList<Fight>();
 
-  // public void setPokemonsCatching(List<PokemonCatching> pokemonCatchings) {
-  //   this.pokemonsCatchings.clear();
-  //   this.pokemonsCatchings.addAll(pokemonCatchings);
-  // }
-
   public void setPokemonsCatching(List<Fight> fights) {
     this.fights.clear();
     this.fights.addAll(fights);

@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record PokemonRequest(
     @NotBlank String name,
-    String nickname,
     @NotNull Integer attack,
     @NotNull Integer speed,
     @NotNull Integer pv,

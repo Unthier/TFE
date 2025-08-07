@@ -7,7 +7,7 @@ import net.datafaker.Faker;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @AllArgsConstructor
-public abstract class EntityFactory<T> {
+public abstract class EntityFactoryTest<T> {
   protected Faker faker;
   private JpaRepository<T, BigInteger> repository;
 

@@ -15,7 +15,6 @@ public class PokemonResource implements HasIncludables {
 
   private final BigInteger id;
   private final String name;
-  // private final String nickname;
   private final Integer attack;
   private final Integer speed;
   private final Integer pv;
@@ -23,14 +22,10 @@ public class PokemonResource implements HasIncludables {
   private final Integer captureRate;
   private final Integer nextEvolutionLevel;
   private final String nameOfNextEvolution;
-  // private final Integer level;
   private final PokemonTypeName type;
-
-  // private final PokemonStatusName status;
 
   @Override
   public Set<String> includables() {
     return null;
-    // return Set.of("studio", "cover", "tags");
   }
 }

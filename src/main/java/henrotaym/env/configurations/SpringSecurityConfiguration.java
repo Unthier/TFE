@@ -22,17 +22,17 @@ public class SpringSecurityConfiguration {
         .logout(
             logout ->
                 logout
-                    .logoutUrl("/logout") // URL qui déclenche le logout
-                    .logoutSuccessUrl("/login") // Où rediriger après déconnexion
-                    .invalidateHttpSession(true) // Invalide la session
-                    .deleteCookies("JSESSIONID") // Supprime le cookie de session
+                    .logoutUrl("/logout") 
+                    .logoutSuccessUrl("/login")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")
             )
         .oauth2Login(
-            oauth2 -> oauth2.defaultSuccessUrl("/succes") // Redirection après connexion réussie
+            oauth2 -> oauth2.defaultSuccessUrl("/succes")
             )
         // .formLogin(
         //     form ->
-        //         form.defaultSuccessUrl("/pokemons", true) // Redirection aussi pour login
+        //         form.defaultSuccessUrl("/pokemons")
         // formulaire
         //     )
         .build();

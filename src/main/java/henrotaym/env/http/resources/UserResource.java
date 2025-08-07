@@ -17,7 +17,6 @@ public class UserResource implements HasIncludables {
   private final BigInteger id;
   private final String name;
   private final UserRoleName role;
-  // private final Integer catching_number;
   private final String mail;
   private List<PokemonCatchingResource> pokemonsCatchings;
   private List<FightResource> fights;
@@ -25,6 +24,5 @@ public class UserResource implements HasIncludables {
   @Override
   public Set<String> includables() {
     return Set.of("pokemonsCatching", "fights");
-    // throw new UnsupportedOperationException("Unimplemented method 'includables'");
   }
 }

@@ -5,16 +5,22 @@ import henrotaym.env.Factories.PokemonTrainingFactory;
 import henrotaym.env.entities.Pokemon;
 import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.entities.PokemonTraining;
+import henrotaym.env.entities.User;
 import henrotaym.env.enums.PokemonCatchingStatusName;
+import henrotaym.env.exceptions.MaxNumberCatchingException;
 import henrotaym.env.exceptions.TooManyTrainingsException;
 import henrotaym.env.http.resources.PokemonCatchingResource;
+import henrotaym.env.http.resources.UserResource;
 import henrotaym.env.mappers.ResourceMapper;
 import henrotaym.env.repositories.PokemonCatchingRepository;
 import henrotaym.env.repositories.PokemonRepository;
+import henrotaym.env.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +33,7 @@ public class PokemonCatchingService {
   private PokemonTrainingFactory pokemonTrainingFactory;
   private PokemonRepository pokemonRepository;
   private PokemonCatchingFactory pokemonCatchingFactory;
+  private UserRepository userRepository;
 
   public List<PokemonCatchingResource> index(BigInteger userId) {
     return this.pokemonCatchingRepository.findAll().stream()
@@ -116,4 +123,65 @@ public class PokemonCatchingService {
 
     return pokemonCatching;
   }
+
+  public UserResource catchPokemon(User user) {
+    List<PokemonCatching> pokmeonCtaCatchings = user.getPokemonsCatchings();
+    if (pokmeonCtaCatchings != null) {
+      List<PokemonCatching> catchingToday =
+          pokmeonCtaCatchings.stream()
+              .filter(
+                  pokemonCatching ->
+                      pokemonCatching
+                          .getCatchingOn()
+                          .toLocalDate()
+                          .equals(LocalDateTime.now().toLocalDate()))
+              .toList();
+      if (catchingToday.size() >= 5) {
+        throw new MaxNumberCatchingException("You can only catch 5 pokemons by day.");
+      }
+    }
+
+    List<BigInteger> ids = this.pokemonRepository.findAllIds();
+    BigInteger randomId = ids.get(new Random().nextInt(ids.size()));
+    Pokemon pokemon =
+        this.pokemonRepository
+            .findById(randomId)
+            .orElseThrow(() -> new EntityNotFoundException("Pokemon not found."));
+    PokemonCatching pokemonCatching = this.pokemonCatchingFactory.create(pokemon);
+    pokemonCatching.setUser(user);
+    user.getPokemonsCatchings().add(pokemonCatching);
+    this.userRepository.save(user);
+    return this.resourceMapper.userResource(user);
+  }
+
+  public UserResource catchPokemon(BigInteger userId) {
+    User user = this.userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found."));;
+    List<PokemonCatching> pokmeonCtaCatchings = user.getPokemonsCatchings();
+    if (pokmeonCtaCatchings != null) {
+      List<PokemonCatching> catchingToday =
+          pokmeonCtaCatchings.stream()
+              .filter(
+                  pokemonCatching ->
+                      pokemonCatching
+                          .getCatchingOn()
+                          .toLocalDate()
+                          .equals(LocalDateTime.now().toLocalDate()))
+              .toList();
+      if (catchingToday.size() >= 5) {
+        throw new MaxNumberCatchingException("You can only catch 5 pokemons by day.");
+      }
+    }
+
+    List<BigInteger> ids = this.pokemonRepository.findAllIds();
+    BigInteger randomId = ids.get(new Random().nextInt(ids.size()));
+    Pokemon pokemon =
+        this.pokemonRepository
+            .findById(randomId)
+            .orElseThrow(() -> new EntityNotFoundException("Pokemon not found."));
+    PokemonCatching pokemonCatching = this.pokemonCatchingFactory.create(pokemon);
+    pokemonCatching.setUser(user);
+    user.getPokemonsCatchings().add(pokemonCatching);
+    this.userRepository.save(user);
+    return this.resourceMapper.userResource(user);
+  } 
 }

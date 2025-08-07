@@ -20,7 +20,6 @@ public class UserMapper {
     user.setName(request.name());
     user.setMail(request.mail());
     user.setRole(request.role());
-    //user.setCaptchingNumber(request.catchingNumber());
     user.setPassword(passwordEncoder.encode(request.password()));
 
     return user;

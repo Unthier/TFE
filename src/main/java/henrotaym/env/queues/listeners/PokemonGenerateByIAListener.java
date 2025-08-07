@@ -46,7 +46,6 @@ public class PokemonGenerateByIAListener implements Listener<PokemonGenerateByIA
             """
             Tu dois générer un ou plusieurs Pokémon totalement inventés.
             Privilégie les Pokémon sans évolution, mais tu peux en créer avec une ou deux formes évoluées au maximum.
-
             Voici la structure JSON attendue :
             [
               {
@@ -61,7 +60,6 @@ public class PokemonGenerateByIAListener implements Listener<PokemonGenerateByIA
                 "nameOfNextEvolution": null
               }
             ]
-
             Règles :
             - Réponds uniquement avec un tableau JSON, sans aucune explication ni commentaire.
             - Si tu veux créer une évolution, ajoute un deuxième objet dans le tableau représentant la forme évoluée.

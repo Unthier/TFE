@@ -18,8 +18,7 @@ public class PokemonMapper {
         pokemon.getCaptureRate(),
         pokemon.getNextEvolutionLevel(),
         pokemon.getNameOfNextEvolution(),
-        pokemon.getType() /*,
-        pokemon.getStatus()*/);
+        pokemon.getType());
   }
 
   public Pokemon request(PokemonRequest request, Pokemon pokemon) {
