@@ -1,11 +1,13 @@
 package henrotaym.env.mappers;
 
+import henrotaym.env.entities.Command;
 import henrotaym.env.entities.Fight;
 import henrotaym.env.entities.Pokemon;
 import henrotaym.env.entities.PokemonCatching;
 import henrotaym.env.entities.PokemonTrainer;
 import henrotaym.env.entities.Trainer;
 import henrotaym.env.entities.User;
+import henrotaym.env.http.resources.CommandResource;
 import henrotaym.env.http.resources.FightResource;
 import henrotaym.env.http.resources.PokemonCatchingResource;
 import henrotaym.env.http.resources.PokemonResource;
@@ -27,6 +29,7 @@ public class ResourceMapper {
   private final PokemonCatchingMapper pokemonCatchingMapper;
   private final PokemonTrainerMapper pokemonTrainerMapper;
   private final FightMapper fightMapper;
+  private final CommandMapper commandMapper;
 
   public PokemonResource pokemonResource(Pokemon pokemon) {
     return this.pokemonMapper.resource(pokemon);
@@ -78,5 +81,9 @@ public class ResourceMapper {
 
   public FightResource fightResource(Fight fight) {
     return this.fightMapper.resource(fight);
+  }
+
+  public CommandResource commandResource(Command command) {
+    return this.commandMapper.resource(command);
   }
 }

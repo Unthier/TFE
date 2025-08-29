@@ -68,4 +68,77 @@ public class UserControllerFeatureTest extends ApplicationTest {
     assertEquals(pokemonNumber, newUser.getPokemonsCatchings().size());
     assertEquals(user.getId(), newUser.getId());
   }
+
+  @Test
+  public void it_responds_to_catch_a_pokemon_and_added_it_in_db() throws Exception {
+    User user = this.userFactory.create();
+
+    Faker faker = new Faker();
+
+    PokemonCatchingFactoryTest pokemonCatchingFactoryTest =
+        new PokemonCatchingFactoryTest(faker, pokemonCatchingRepository, userFactory);
+
+    PokemonCatching pokemonCatching1 = pokemonCatchingFactoryTest.create();
+    PokemonCatching pokemonCatching2 = pokemonCatchingFactoryTest.create();
+    PokemonCatching pokemonCatching3 = pokemonCatchingFactoryTest.create();
+    PokemonCatching pokemonCatching4 = pokemonCatchingFactoryTest.create();
+
+    user.getPokemonsCatchings().add(pokemonCatching1);
+    user.getPokemonsCatchings().add(pokemonCatching2);
+    user.getPokemonsCatchings().add(pokemonCatching3);
+    user.getPokemonsCatchings().add(pokemonCatching4);
+
+    String token = this.authSercive.generateToken(user.getName());
+
+    Integer pokemonNumber = user.getPokemonsCatchings().size();
+
+    this.jsonClient
+        .request(request -> request.post("/users/{userId}/catch", user.getId()))
+        // .header("Authorization", "Bearer " + token))
+        .perform()
+        .status(status -> status.isOk());
+
+    User newUser = this.userRepository.findById(user.getId()).get();
+    assertEquals(pokemonNumber + 1, newUser.getPokemonsCatchings().size());
+    assertEquals(user.getId(), newUser.getId());
+  }
+
+  @Test
+  public void it_respond_to_abandonned_pokemon() throws Exception {
+    User user = this.userFactory.create();
+
+    Faker faker = new Faker();
+
+    PokemonCatchingFactoryTest pokemonCatchingFactoryTest =
+        new PokemonCatchingFactoryTest(faker, pokemonCatchingRepository, userFactory);
+
+    PokemonCatching pokemonCatching1 = pokemonCatchingFactoryTest.create();
+    PokemonCatching pokemonCatching2 = pokemonCatchingFactoryTest.create();
+    PokemonCatching pokemonCatching3 = pokemonCatchingFactoryTest.create();
+    PokemonCatching pokemonCatching4 = pokemonCatchingFactoryTest.create();
+
+    user.getPokemonsCatchings().add(pokemonCatching1);
+    user.getPokemonsCatchings().add(pokemonCatching2);
+    user.getPokemonsCatchings().add(pokemonCatching3);
+    user.getPokemonsCatchings().add(pokemonCatching4);
+
+    String token = this.authSercive.generateToken(user.getName());
+
+    Integer pokemonNumber = user.getPokemonsCatchings().size();
+
+    this.jsonClient
+        .request(
+            request ->
+                request.post(
+                    "/users/{userId}/pokemon/{pokemonId}/abandon",
+                    user.getId(),
+                    pokemonCatching1.getId()))
+        // .header("Authorization", "Bearer " + token))
+        .perform()
+        .status(status -> status.isOk());
+
+    User newUser = this.userRepository.findById(user.getId()).get();
+    assertEquals(pokemonNumber - 1, newUser.getPokemonsCatchings().size());
+    assertEquals(user.getId(), newUser.getId());
+  }
 }

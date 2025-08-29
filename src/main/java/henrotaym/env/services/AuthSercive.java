@@ -38,17 +38,16 @@ public class AuthSercive {
   }
 
   public User getUserFromToken(String token) {
-    return null;
-    // String username =
-    //     Jwts.parserBuilder()
-    //         .setSigningKey(key)
-    //         .build()
-    //         .parseClaimsJws(token)
-    //         .getBody()
-    //         .getSubject();
+    String username =
+        Jwts.parserBuilder()
+            .setSigningKey(key)
+            .build()
+            .parseClaimsJws(token)
+            .getBody()
+            .getSubject();
 
-    // return this.userRepository
-    //     .findByName(username)
-    //     .orElseThrow(() -> new EntityNotFoundException("User not found"));
+    return this.userRepository
+        .findByName(username)
+        .orElseThrow(() -> new RuntimeException("User not found"));
   }
 }
