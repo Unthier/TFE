@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -71,11 +70,11 @@ public class SpringSecurityConfiguration {
               auth.requestMatchers("/users/**").authenticated();
               auth.anyRequest().authenticated();
             })
-        .sessionManagement(
-            session ->
-                session.sessionCreationPolicy(
-                    SessionCreationPolicy.STATELESS) // Désactive les sessions
-            )
+        // .sessionManagement(
+        //     session ->
+        //         session.sessionCreationPolicy(
+        //             SessionCreationPolicy.STATELESS) // Désactive les sessions
+        //     )
         .logout(
             logout ->
                 logout
@@ -92,8 +91,8 @@ public class SpringSecurityConfiguration {
                     .defaultSuccessUrl("/auth/token", true) // Où rediriger après un login réussi
                     .permitAll())
         .oauth2Login(oauth2 -> oauth2.defaultSuccessUrl("/auth/token"))
-        .sessionManagement(
-            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        // .sessionManagement(
+        //     session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         // On ajoute notre filtre JWT avant celui de l'authentification
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .build();

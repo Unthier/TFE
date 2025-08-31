@@ -1,8 +1,11 @@
 package henrotaym.env.http.controllers;
 
+import henrotaym.env.entities.User;
 import henrotaym.env.enums.ProfileName;
+import henrotaym.env.enums.UserRoleName;
 import henrotaym.env.http.requests.TrainerRequest;
 import henrotaym.env.http.resources.TrainerResource;
+import henrotaym.env.services.AuthSercive;
 import henrotaym.env.services.TrainerService;
 import jakarta.validation.Valid;
 import java.math.BigInteger;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +32,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Profile(ProfileName.HTTP)
 public class TrainerController {
   private final TrainerService trainerService;
+  private final AuthSercive authSercive;
 
   @PostMapping("")
-  public ResponseEntity<TrainerResource> store(@RequestBody @Valid TrainerRequest request) {
+  public ResponseEntity<TrainerResource> store(
+      @RequestHeader("Authorization") String bearerToken,
+      @RequestBody @Valid TrainerRequest request) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      throw new RuntimeException("Only admin can create trainers");
+    }
     TrainerResource trainer = this.trainerService.store(request);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(trainer);
@@ -46,14 +58,27 @@ public class TrainerController {
 
   @PutMapping("{id}")
   public ResponseEntity<TrainerResource> update(
-      @PathVariable BigInteger id, @RequestBody @Valid TrainerRequest request) {
+      @RequestHeader("Authorization") String bearerToken,
+      @PathVariable BigInteger id,
+      @RequestBody @Valid TrainerRequest request) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      throw new RuntimeException("Only admin can create trainers");
+    }
     TrainerResource trainer = this.trainerService.update(id, request);
 
     return ResponseEntity.ok(trainer);
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Object> destroy(@PathVariable BigInteger id) {
+  public ResponseEntity<Object> destroy(
+      @RequestHeader("Authorization") String bearerToken, @PathVariable BigInteger id) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      throw new RuntimeException("Only admin can create trainers");
+    }
     this.trainerService.destroy(id);
 
     return ResponseEntity.noContent().build();

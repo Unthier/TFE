@@ -1,8 +1,11 @@
 package henrotaym.env.http.controllers;
 
+import henrotaym.env.entities.User;
 import henrotaym.env.enums.ProfileName;
+import henrotaym.env.enums.UserRoleName;
 import henrotaym.env.http.requests.PokemonRequest;
 import henrotaym.env.http.resources.PokemonResource;
+import henrotaym.env.services.AuthSercive;
 import henrotaym.env.services.PokemonService;
 import jakarta.validation.Valid;
 import java.math.BigInteger;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,9 +32,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Profile(ProfileName.HTTP)
 public class PokemonController {
   private final PokemonService pokemonService;
+  private final AuthSercive authSercive;
 
   @PostMapping("")
-  public ResponseEntity<PokemonResource> store(@RequestBody @Valid PokemonRequest request) {
+  public ResponseEntity<PokemonResource> store(
+      @RequestHeader("Authorization") String bearerToken,
+      @RequestBody @Valid PokemonRequest request) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      throw new RuntimeException("Only admin can create trainers");
+    }
     PokemonResource pokemon = this.pokemonService.store(request);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(pokemon);
@@ -46,14 +58,27 @@ public class PokemonController {
 
   @PutMapping("{id}")
   public ResponseEntity<PokemonResource> update(
-      @PathVariable BigInteger id, @RequestBody @Valid PokemonRequest request) {
+      @RequestHeader("Authorization") String bearerToken,
+      @PathVariable BigInteger id,
+      @RequestBody @Valid PokemonRequest request) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      throw new RuntimeException("Only admin can create trainers");
+    }
     PokemonResource pokemon = this.pokemonService.update(id, request);
 
     return ResponseEntity.ok(pokemon);
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Object> destroy(@PathVariable BigInteger id) {
+  public ResponseEntity<Object> destroy(
+      @RequestHeader("Authorization") String bearerToken, @PathVariable BigInteger id) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      throw new RuntimeException("Only admin can create trainers");
+    }
     this.pokemonService.destroy(id);
 
     return ResponseEntity.noContent().build();
