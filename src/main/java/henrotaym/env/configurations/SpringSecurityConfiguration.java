@@ -1,13 +1,17 @@
 package henrotaym.env.configurations;
 
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SpringSecurityConfiguration {
 
   //    @Bean
@@ -51,6 +55,9 @@ public class SpringSecurityConfiguration {
   //         )
   //         .build();
   //   }
+
+  private JwtAuthenticationFilter jwtAuthenticationFilter;
+
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     return http.csrf(csrf -> csrf.disable())
@@ -60,8 +67,15 @@ public class SpringSecurityConfiguration {
               auth.requestMatchers("/pokemons").permitAll();
               auth.requestMatchers("/pokemons/**").permitAll();
               auth.requestMatchers("/commands").permitAll();
+              auth.requestMatchers("/auth/**").permitAll();
+              auth.requestMatchers("/users/**").authenticated();
               auth.anyRequest().authenticated();
             })
+        .sessionManagement(
+            session ->
+                session.sessionCreationPolicy(
+                    SessionCreationPolicy.STATELESS) // Désactive les sessions
+            )
         .logout(
             logout ->
                 logout
@@ -69,7 +83,19 @@ public class SpringSecurityConfiguration {
                     .logoutSuccessUrl("/login")
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID"))
-        .oauth2Login(oauth2 -> oauth2.defaultSuccessUrl("/succes"))
+        .formLogin(
+            form ->
+                form.loginPage("/login") // L’URL de ton formulaire
+                    .loginProcessingUrl("/process-login") // L’URL POST où Spring traite le login
+                    .usernameParameter("email") // Champ pour l’email dans ton formulaire
+                    .passwordParameter("password") // Champ pour le mot de passe
+                    .defaultSuccessUrl("/auth/token", true) // Où rediriger après un login réussi
+                    .permitAll())
+        .oauth2Login(oauth2 -> oauth2.defaultSuccessUrl("/auth/token"))
+        .sessionManagement(
+            session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        // On ajoute notre filtre JWT avant celui de l'authentification
+        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 }

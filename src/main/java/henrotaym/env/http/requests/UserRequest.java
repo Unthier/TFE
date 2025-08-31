@@ -11,7 +11,7 @@ import java.util.List;
 public record UserRequest(
     @NotBlank String name,
     @Valid String password,
-    @NotNull UserRoleName role,
+    UserRoleName role,
     @NotNull String mail,
     @Valid List<PokemonCatchingRelationshipRequest> pokemonsCatching,
     @Valid List<FightRelationshipRequest> fights) {}

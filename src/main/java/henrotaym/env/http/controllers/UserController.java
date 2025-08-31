@@ -2,6 +2,7 @@ package henrotaym.env.http.controllers;
 
 import henrotaym.env.entities.User;
 import henrotaym.env.enums.ProfileName;
+import henrotaym.env.enums.UserRoleName;
 import henrotaym.env.http.requests.UserRequest;
 import henrotaym.env.http.resources.FightResource;
 import henrotaym.env.http.resources.PokemonCatchingResource;
@@ -9,13 +10,13 @@ import henrotaym.env.http.resources.UserResource;
 import henrotaym.env.services.AuthSercive;
 import henrotaym.env.services.FightService;
 import henrotaym.env.services.PokemonCatchingService;
-import henrotaym.env.services.PokemonService;
 import henrotaym.env.services.UserService;
 import jakarta.validation.Valid;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("users")
 @Profile(ProfileName.HTTP)
+@Slf4j
 public class UserController {
   private final UserService userService;
   private final PokemonCatchingService pokemonCatchingService;
@@ -41,30 +43,57 @@ public class UserController {
   private final AuthSercive authSercive;
 
   @PostMapping("")
-  public ResponseEntity<UserResource> store(@RequestBody @Valid UserRequest request) {
-    UserResource user = this.userService.store(request);
+  public ResponseEntity<UserResource> store(
+      @RequestHeader("Authorization") String bearerToken, @RequestBody @Valid UserRequest request) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+    }
+    UserResource userResource = this.userService.store(request);
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    return ResponseEntity.status(HttpStatus.CREATED).body(userResource);
   }
 
   @GetMapping("{id}")
   public ResponseEntity<UserResource> show(
-      @PathVariable BigInteger id, @RequestParam(required = false) Set<String> include) {
-    UserResource pokemon = this.userService.show(id, include);
+      @RequestHeader("Authorization") String bearerToken,
+      @PathVariable BigInteger id,
+      @RequestParam(required = false) Set<String> include) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+    }
+    UserResource userResource = this.userService.show(id, include);
 
-    return ResponseEntity.ok(pokemon);
+    return ResponseEntity.ok(userResource);
   }
 
   @PutMapping("{id}")
   public ResponseEntity<UserResource> update(
-      @PathVariable BigInteger id, @RequestBody @Valid UserRequest request) {
+      @RequestHeader("Authorization") String bearerToken,
+      @PathVariable BigInteger id,
+      @RequestBody @Valid UserRequest request) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+    }
     UserResource pokemon = this.userService.update(id, request);
 
     return ResponseEntity.ok(pokemon);
   }
 
   @DeleteMapping("{id}")
-  public ResponseEntity<Object> destroy(@PathVariable BigInteger id) {
+  public ResponseEntity<Object> destroy(
+      @RequestHeader("Authorization") String bearerToken, @PathVariable BigInteger id) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    if (user.getRole() != UserRoleName.ADMIN) {
+      return ResponseEntity.status(HttpStatus.FORBIDDEN)
+          .body("You are not autorized to delete this user");
+    }
     this.userService.destroy(id);
 
     return ResponseEntity.noContent().build();
@@ -101,11 +130,31 @@ public class UserController {
     return ResponseEntity.ok(pokemonCatchingResources);
   }
 
+  @GetMapping("/pokemons")
+  public ResponseEntity<List<PokemonCatchingResource>> indexPokemon(
+      @RequestHeader("Authorization") String bearerToken) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    List<PokemonCatchingResource> pokemonCatchingResources =
+        this.pokemonCatchingService.index(user.getId());
+    return ResponseEntity.ok(pokemonCatchingResources);
+  }
+
   @GetMapping("{userId}/pokemons/{pokemonId}")
-  public ResponseEntity<PokemonCatchingResource> shoxPokemon(
+  public ResponseEntity<PokemonCatchingResource> showPokemon(
       @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
     PokemonCatchingResource pokemonCatchingResource =
         this.pokemonCatchingService.show(userId, pokemonId);
+    return ResponseEntity.ok(pokemonCatchingResource);
+  }
+
+  @GetMapping("/pokemons/{pokemonId}")
+  public ResponseEntity<PokemonCatchingResource> showPokemon(
+      @RequestHeader("Authorization") String bearerToken, @PathVariable BigInteger pokemonId) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    PokemonCatchingResource pokemonCatchingResource =
+        this.pokemonCatchingService.show(user.getId(), pokemonId);
     return ResponseEntity.ok(pokemonCatchingResource);
   }
 
@@ -117,11 +166,31 @@ public class UserController {
     return ResponseEntity.ok(pokemonCatchingResource);
   }
 
+  @PostMapping("pokemons/{pokemonId}/abandon")
+  public ResponseEntity<PokemonCatchingResource> abandonPokemon(
+      @RequestHeader("Authorization") String bearerToken, @PathVariable BigInteger pokemonId) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    PokemonCatchingResource pokemonCatchingResource =
+        this.pokemonCatchingService.abandon(user.getId(), pokemonId);
+    return ResponseEntity.ok(pokemonCatchingResource);
+  }
+
   @PostMapping("{userId}/pokemons/{pokemonId}/training")
   public ResponseEntity<PokemonCatchingResource> trainingPokemon(
       @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
     PokemonCatchingResource pokemonCatchingResource =
         this.pokemonCatchingService.training(userId, pokemonId);
+    return ResponseEntity.ok(pokemonCatchingResource);
+  }
+
+  @PostMapping("pokemons/{pokemonId}/training")
+  public ResponseEntity<PokemonCatchingResource> trainingPokemon(
+      @RequestHeader("Authorization") String bearerToken, @PathVariable BigInteger pokemonId) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    PokemonCatchingResource pokemonCatchingResource =
+        this.pokemonCatchingService.training(user.getId(), pokemonId);
     return ResponseEntity.ok(pokemonCatchingResource);
   }
 
@@ -134,9 +203,28 @@ public class UserController {
     return this.fightService.store(userId, pokemonId, trainerId);
   }
 
+  @PostMapping("fights/pokemons/{pokemonId}/trainer/{trainerId}")
+  public String fightPokemonStart(
+      @RequestHeader("Authorization") String bearerToken,
+      @PathVariable BigInteger pokemonId,
+      @PathVariable BigInteger trainerId) {
+
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    return this.fightService.store(user.getId(), pokemonId, trainerId);
+  }
+
   @PostMapping("{userId}/fights/{fightId}/abandon")
   public String fightAbandon(@PathVariable BigInteger userId, @PathVariable BigInteger fightId) {
     return this.fightService.fightAbandoned(userId, fightId);
+  }
+
+  @PostMapping("fights/{fightId}/abandon")
+  public String fightAbandon(
+      @RequestHeader("Authorization") String bearerToken, @PathVariable BigInteger fightId) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    return this.fightService.fightAbandoned(user.getId(), fightId);
   }
 
   @GetMapping("{userId}/fights")
@@ -145,9 +233,25 @@ public class UserController {
     return ResponseEntity.ok(fights);
   }
 
+  @GetMapping("fights")
+  public ResponseEntity<List<FightResource>> indexFights(
+      @RequestHeader("Authorization") String bearerToken) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    List<FightResource> fights = this.fightService.index(user.getId());
+    return ResponseEntity.ok(fights);
+  }
+
   @PostMapping("{userId}/fights/continue")
   public String fightContinue(@PathVariable BigInteger userId) {
 
     return this.fightService.fightContinue(userId);
+  }
+
+  @PostMapping("fights/continue")
+  public String fightContinue(@RequestHeader("Authorization") String bearerToken) {
+    String token = bearerToken.replace("Bearer ", "");
+    User user = this.authSercive.getUserFromToken(token);
+    return this.fightService.fightContinue(user.getId());
   }
 }
