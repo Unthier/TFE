@@ -32,6 +32,6 @@ public class JsonClient {
 
   public JsonRequest header(String name, String value) {
     this.headers.put(name, value);
-    return this.header(name, value);
+    return this.request;
   }
 }
