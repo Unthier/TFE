@@ -9,7 +9,7 @@
         <column name="id" type="BIGINT" autoIncrement="true">
             <constraints primaryKey="true" nullable="false"/>
         </column>
-        <column name="methode" type="ENUM('IN_PROGRESS','WINED','LOSED','ABANDONED')">
+        <column name="methode" type="ENUM('GET','POST','PUT','DELETE', 'PATCH')">
             <constraints nullable="false"/>
         </column>
         <column name="url" type="VARCHAR(255)">
