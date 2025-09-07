@@ -65,6 +65,7 @@ public class PokemonGenerateByIAListener implements Listener<PokemonGenerateByIA
             - Si tu veux créer une évolution, ajoute un deuxième objet dans le tableau représentant la forme évoluée.
             - Si un Pokémon évolue une deuxième fois (maximum 3 formes au total), ajoute un troisième objet.
             - Le champ `nameOfNextEvolution` doit être `null` pour le dernier stade d’évolution.
+            - Réponds **uniquement** avec le tableau JSON, sans aucun backtick ni texte supplémentaire.
             - J'ai déjà ça comme nom de Pokémon : %s
             """,
             pokemonNames);
@@ -118,7 +119,7 @@ public class PokemonGenerateByIAListener implements Listener<PokemonGenerateByIA
                   pokemons.forEach(
                       pokemon -> {
                         log.info("Saving Pokémon: {}", pokemon);
-                        pokemonRepository.save(pokemon);
+                        this.pokemonRepository.save(pokemon);
                       });
                 } catch (Exception e) {
                   log.error("Erreur lors de l’analyse de la réponse de l’IA", e);
