@@ -11,7 +11,7 @@ spring:
             client-id: ${GITHUB_ID_KEY}
             client-secret: ${GITHUB_SECRET_KEY}
             scope: profile, email
-            redirect-uri: "http://localhost:48080/api/login/oauth2/code/github"
+            redirect-uri: "https://tfe.unthier.ip-ddns.com/api/login/oauth2/code/github"
         provider:
           github:
             authorization-uri: https://github.com/login/oauth/authorize
