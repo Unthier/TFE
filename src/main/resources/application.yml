@@ -1,7 +1,10 @@
+server:
+  servlet:
+    context-path: /api
 
 spring:
   main:
-    web-application-type: none
+    web-application-type: servlet
   application:
     name: ${APP_NAME}
   datasource:
@@ -13,7 +16,7 @@ spring:
   kafka:
     admin:
       auto-create: true
-    bootstrap-servers: kafka:9092
+    bootstrap-servers: ${KAFKA_HOST}:9092
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

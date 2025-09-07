@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles({ProfileName.TEST, ProfileName.HTTP, ProfileName.QUEUE})
+@ActiveProfiles({ProfileName.TEST})
 @Transactional
 @AutoConfigureMockMvc
 public abstract class ApplicationTest {}
