@@ -99,18 +99,18 @@ public class UserController {
     return ResponseEntity.noContent().build();
   }
 
-  @GetMapping("")
-  public ResponseEntity<List<UserResource>> index() {
-    List<UserResource> users = this.userService.index();
+  // @GetMapping("")
+  // public ResponseEntity<List<UserResource>> index() {
+  //   List<UserResource> users = this.userService.index();
 
-    return ResponseEntity.ok(users);
-  }
+  //   return ResponseEntity.ok(users);
+  // }
 
-  @PostMapping("{id}/catch")
-  public ResponseEntity<UserResource> catchPokemon(@PathVariable BigInteger id) {
-    UserResource user = this.pokemonCatchingService.catchPokemon(id);
-    return ResponseEntity.status(HttpStatus.CREATED).body(user);
-  }
+  // @PostMapping("{id}/catch")
+  // public ResponseEntity<UserResource> catchPokemon(@PathVariable BigInteger id) {
+  //   UserResource user = this.pokemonCatchingService.catchPokemon(id);
+  //   return ResponseEntity.status(HttpStatus.CREATED).body(user);
+  // }
 
   @PostMapping("/catch")
   public ResponseEntity<UserResource> catchPokemon(
@@ -122,13 +122,13 @@ public class UserController {
     return ResponseEntity.status(HttpStatus.CREATED).body(userResource);
   }
 
-  @GetMapping("{userid}/pokemons")
-  public ResponseEntity<List<PokemonCatchingResource>> indexPokemon(
-      @PathVariable BigInteger userid) {
-    List<PokemonCatchingResource> pokemonCatchingResources =
-        this.pokemonCatchingService.index(userid);
-    return ResponseEntity.ok(pokemonCatchingResources);
-  }
+  // @GetMapping("{userid}/pokemons")
+  // public ResponseEntity<List<PokemonCatchingResource>> indexPokemon(
+  //     @PathVariable BigInteger userid) {
+  //   List<PokemonCatchingResource> pokemonCatchingResources =
+  //       this.pokemonCatchingService.index(userid);
+  //   return ResponseEntity.ok(pokemonCatchingResources);
+  // }
 
   @GetMapping("/pokemons")
   public ResponseEntity<List<PokemonCatchingResource>> indexPokemon(
@@ -140,13 +140,13 @@ public class UserController {
     return ResponseEntity.ok(pokemonCatchingResources);
   }
 
-  @GetMapping("{userId}/pokemons/{pokemonId}")
-  public ResponseEntity<PokemonCatchingResource> showPokemon(
-      @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
-    PokemonCatchingResource pokemonCatchingResource =
-        this.pokemonCatchingService.show(userId, pokemonId);
-    return ResponseEntity.ok(pokemonCatchingResource);
-  }
+  // @GetMapping("{userId}/pokemons/{pokemonId}")
+  // public ResponseEntity<PokemonCatchingResource> showPokemon(
+  //     @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
+  //   PokemonCatchingResource pokemonCatchingResource =
+  //       this.pokemonCatchingService.show(userId, pokemonId);
+  //   return ResponseEntity.ok(pokemonCatchingResource);
+  // }
 
   @GetMapping("/pokemons/{pokemonId}")
   public ResponseEntity<PokemonCatchingResource> showPokemon(
@@ -158,13 +158,13 @@ public class UserController {
     return ResponseEntity.ok(pokemonCatchingResource);
   }
 
-  @PostMapping("{userId}/pokemons/{pokemonId}/abandon")
-  public ResponseEntity<PokemonCatchingResource> abandonPokemon(
-      @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
-    PokemonCatchingResource pokemonCatchingResource =
-        this.pokemonCatchingService.abandon(userId, pokemonId);
-    return ResponseEntity.ok(pokemonCatchingResource);
-  }
+  // @PostMapping("{userId}/pokemons/{pokemonId}/abandon")
+  // public ResponseEntity<PokemonCatchingResource> abandonPokemon(
+  //     @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
+  //   PokemonCatchingResource pokemonCatchingResource =
+  //       this.pokemonCatchingService.abandon(userId, pokemonId);
+  //   return ResponseEntity.ok(pokemonCatchingResource);
+  // }
 
   @PostMapping("pokemons/{pokemonId}/abandon")
   public ResponseEntity<PokemonCatchingResource> abandonPokemon(
@@ -176,13 +176,13 @@ public class UserController {
     return ResponseEntity.ok(pokemonCatchingResource);
   }
 
-  @PostMapping("{userId}/pokemons/{pokemonId}/training")
-  public ResponseEntity<PokemonCatchingResource> trainingPokemon(
-      @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
-    PokemonCatchingResource pokemonCatchingResource =
-        this.pokemonCatchingService.training(userId, pokemonId);
-    return ResponseEntity.ok(pokemonCatchingResource);
-  }
+  // @PostMapping("{userId}/pokemons/{pokemonId}/training")
+  // public ResponseEntity<PokemonCatchingResource> trainingPokemon(
+  //     @PathVariable BigInteger userId, @PathVariable BigInteger pokemonId) {
+  //   PokemonCatchingResource pokemonCatchingResource =
+  //       this.pokemonCatchingService.training(userId, pokemonId);
+  //   return ResponseEntity.ok(pokemonCatchingResource);
+  // }
 
   @PostMapping("pokemons/{pokemonId}/training")
   public ResponseEntity<PokemonCatchingResource> trainingPokemon(
@@ -194,14 +194,14 @@ public class UserController {
     return ResponseEntity.ok(pokemonCatchingResource);
   }
 
-  @PostMapping("{userId}/fights/pokemons/{pokemonId}/trainer/{trainerId}")
-  public String fightPokemonStart(
-      @PathVariable BigInteger userId,
-      @PathVariable BigInteger pokemonId,
-      @PathVariable BigInteger trainerId) {
+  // @PostMapping("{userId}/fights/pokemons/{pokemonId}/trainer/{trainerId}")
+  // public String fightPokemonStart(
+  //     @PathVariable BigInteger userId,
+  //     @PathVariable BigInteger pokemonId,
+  //     @PathVariable BigInteger trainerId) {
 
-    return this.fightService.store(userId, pokemonId, trainerId);
-  }
+  //   return this.fightService.store(userId, pokemonId, trainerId);
+  // }
 
   @PostMapping("fights/pokemons/{pokemonId}/trainer/{trainerId}")
   public String fightPokemonStart(
@@ -214,10 +214,10 @@ public class UserController {
     return this.fightService.store(user.getId(), pokemonId, trainerId);
   }
 
-  @PostMapping("{userId}/fights/{fightId}/abandon")
-  public String fightAbandon(@PathVariable BigInteger userId, @PathVariable BigInteger fightId) {
-    return this.fightService.fightAbandoned(userId, fightId);
-  }
+  // @PostMapping("{userId}/fights/{fightId}/abandon")
+  // public String fightAbandon(@PathVariable BigInteger userId, @PathVariable BigInteger fightId) {
+  //   return this.fightService.fightAbandoned(userId, fightId);
+  // }
 
   @PostMapping("fights/{fightId}/abandon")
   public String fightAbandon(
@@ -227,11 +227,11 @@ public class UserController {
     return this.fightService.fightAbandoned(user.getId(), fightId);
   }
 
-  @GetMapping("{userId}/fights")
-  public ResponseEntity<List<FightResource>> indexFights(@PathVariable BigInteger userId) {
-    List<FightResource> fights = this.fightService.index(userId);
-    return ResponseEntity.ok(fights);
-  }
+  // @GetMapping("{userId}/fights")
+  // public ResponseEntity<List<FightResource>> indexFights(@PathVariable BigInteger userId) {
+  //   List<FightResource> fights = this.fightService.index(userId);
+  //   return ResponseEntity.ok(fights);
+  // }
 
   @GetMapping("fights")
   public ResponseEntity<List<FightResource>> indexFights(
@@ -242,11 +242,11 @@ public class UserController {
     return ResponseEntity.ok(fights);
   }
 
-  @PostMapping("{userId}/fights/continue")
-  public String fightContinue(@PathVariable BigInteger userId) {
+  // @PostMapping("{userId}/fights/continue")
+  // public String fightContinue(@PathVariable BigInteger userId) {
 
-    return this.fightService.fightContinue(userId);
-  }
+  //   return this.fightService.fightContinue(userId);
+  // }
 
   @PostMapping("fights/continue")
   public String fightContinue(@RequestHeader("Authorization") String bearerToken) {

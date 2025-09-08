@@ -5,6 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record CommandRequest(
-    @NotBlank @NotNull MethodeName methode,
+    @NotNull MethodeName methode,
     @NotBlank @NotNull String url,
     @NotBlank @NotNull String descript) {}
