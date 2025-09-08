@@ -80,7 +80,8 @@ public class PokemonCatchingService {
     }
     PokemonTraining pokemonTraining = this.pokemonTrainingFactory.create(pokemonCatching);
 
-    if (pokemonCatching.getLevel() + 1 == pokemonCatching.getLevelOfNextEvolution()) {
+    if (pokemonCatching.getLevelOfNextEvolution() != null
+        && pokemonCatching.getLevel() + 1 == pokemonCatching.getLevelOfNextEvolution()) {
       pokemonCatching = this.checkEvoledLevel(pokemonCatching);
       // log.info("Pokémon catching has evolved to: {}", pokemonCatching.getName());
     } else {
